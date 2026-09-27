@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rosy Qin — AI, Robotics, Embodied Intelligence, 6D Pose and Synthetic Data." />
+
+  <title>Rosy Qin | AI & Robotics</title>
+
+  <style>
+    /* =========================================================
+       ROSY QIN · FAIRYTALE RESEARCH PORTFOLIO
+       ========================================================= */
+
+    :root {
+      --cream: #fbf7ee;
+      --paper: #fffdf7;
+      --paper-soft: #f7f0e6;
+
+      --navy: #142746;
+      --navy-deep: #09162d;
+      --blue: #7188ad;
+      --blue-light: #dbe7f3;
+
+      --gold: #c79b4b;
+      --gold-light: #e7c987;
+      --rose: #d8a7a5;
+
+      --text: #1d2a3d;
+      --muted: #6c7582;
+
+      --border: rgba(199, 155, 75, 0.33);
+
+      --shadow:
+        0 18px 45px rgba(35, 45, 65, 0.09);
+
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      background:
+        radial-gradient(
+          circle at 20% 0%,
+          rgba(255, 255, 255, 0.95),
+          transparent 35%
+        ),
+        linear-gradient(
+          180deg,
+          #fbf8ef 0%,
+          #f7f0e5 45%,
+          #eef3f7 100%
+        );
+
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* =========================================================
+       DECORATIVE STARS
+       ========================================================= */
+
+    .star {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.8;
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    .star::before,
+    .star::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      border-radius: 50%;
+      filter: blur(2px);
+    }
+
+    .star.small {
+      width: 4px;
+      height: 4px;
+    }
+
+    .star.large {
+      width: 12px;
+      height: 12px;
+    }
+
+    @keyframes shimmer {
+      0%,
+      100% {
+        opacity: 0.35;
+        transform: rotate(45deg) scale(0.75);
+      }
+
+      50% {
+        opacity: 1;
+        transform: rotate(45deg) scale(1.15);
+      }
+    }
+
+    /* =========================================================
+       NAV
+       ========================================================= */
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      backdrop-filter: blur(18px);
+      background: rgba(251, 247, 238, 0.86);
+
+      border-bottom: 1px solid rgba(199, 155, 75, 0.18);
+    }
+
+    nav {
+      min-height: 76px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      font-size: 1.18rem;
+      color: var(--navy);
+      font-weight: bold;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--gold);
+
+      box-shadow:
+        inset 0 0 0 4px rgba(199, 155, 75, 0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--navy);
+      font-size: 0.92rem;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+
+      left: 50%;
+      bottom: -8px;
+
+      width: 0;
+      height: 1px;
+
+      background: var(--gold);
+
+      transition: 0.25s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      position: relative;
+      padding: 96px 0 88px;
+
+      min-height: 670px;
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+      width: 720px;
+      height: 720px;
+
+      right: -280px;
+      top: -160px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(219, 231, 243, 0.72),
+          rgba(219, 231, 243, 0.18) 48%,
+          transparent 72%
+        );
+    }
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+      left: -80px;
+      bottom: -100px;
+
+      width: 500px;
+      height: 270px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(216, 167, 165, 0.13),
+          transparent 70%
+        );
+    }
+
+    .hero-grid {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+
+      align-items: center;
+      gap: 70px;
+
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.74rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      color: var(--navy);
+
+      font-size:
+        clamp(4rem, 7vw, 7rem);
+
+      line-height: 0.92;
+
+      font-weight: 500;
+      letter-spacing: -0.055em;
+
+      margin-bottom: 26px;
+    }
+
+    .subtitle {
+      font-size:
+        clamp(1rem, 1.6vw, 1.18rem);
+
+      line-height: 1.7;
+
+      max-width: 660px;
+
+      color: #41516a;
+
+      margin-bottom: 24px;
+    }
+
+    .hero-note {
+      max-width: 660px;
+
+      line-height: 1.9;
+
+      color: var(--muted);
+
+      margin-bottom: 28px;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.95rem;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      margin-bottom: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 12px 19px;
+
+      border-radius: 999px;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(255, 255, 255, 0.58);
+
+      color: var(--navy);
+
+      transition: 0.25s ease;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.88rem;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+
+      background: rgba(255, 255, 255, 0.95);
+
+      box-shadow:
+        0 8px 25px rgba(30, 40, 60, 0.08);
+    }
+
+    .button.primary {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 8px 12px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(113, 136, 173, 0.1);
+
+      border:
+        1px solid rgba(113, 136, 173, 0.16);
+
+      color: #455975;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.72rem;
+    }
+
+    /* =========================================================
+       HERO ILLUSTRATION
+       no people
+       ========================================================= */
+
+    .storybook-scene {
+      position: relative;
+
+      height: 510px;
+
+      border-radius:
+        180px 180px 32px 32px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          180deg,
+          #b8cbe4 0%,
+          #e6e9e5 41%,
+          #f8eedf 72%,
+          #e7d8c8 100%
+        );
+
+      border:
+        1px solid rgba(199, 155, 75, 0.3);
+
+      box-shadow:
+        var(--shadow);
+    }
+
+    .scene-moon {
+      position: absolute;
+
+      width: 105px;
+      height: 105px;
+
+      border-radius: 50%;
+
+      right: 46px;
+      top: 55px;
+
+      background:
+        radial-gradient(
+          circle at 35% 35%,
+          #fff9da,
+          #f2d997 56%,
+          #d3b46c 100%
+        );
+
+      box-shadow:
+        0 0 40px rgba(238, 213, 146, 0.75);
+    }
+
+    .scene-moon::after {
+      content: "";
+
+      position: absolute;
+
+      width: 100px;
+      height: 100px;
+
+      background: #bccde3;
+
+      border-radius: 50%;
+
+      transform:
+        translate(30px, -12px);
+    }
+
+    .mountains {
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 150px;
+
+      height: 210px;
+
+      opacity: 0.55;
+    }
+
+    .mountain {
+      position: absolute;
+
+      bottom: 0;
+
+      width: 0;
+      height: 0;
+
+      border-left:
+        130px solid transparent;
+
+      border-right:
+        130px solid transparent;
+
+      border-bottom:
+        220px solid #8298b5;
+    }
+
+    .mountain:nth-child(1) {
+      left: -50px;
+    }
+
+    .mountain:nth-child(2) {
+      left: 120px;
+      border-bottom-color: #91a5be;
+      transform: scale(0.86);
+    }
+
+    .mountain:nth-child(3) {
+      right: -60px;
+      border-bottom-color: #7890ad;
+      transform: scale(1.08);
+    }
+
+    .castle {
+      position: absolute;
+
+      left: 50%;
+      bottom: 115px;
+
+      width: 230px;
+      height: 250px;
+
+      transform:
+        translateX(-50%);
+
+      filter:
+        drop-shadow(
+          0 15px 12px
+          rgba(64, 71, 89, 0.16)
+        );
+    }
+
+    .tower {
+      position: absolute;
+      bottom: 0;
+
+      width: 44px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #efe9df,
+          #faf6ee,
+          #ded7cf
+        );
+
+      border:
+        1px solid
+        rgba(72, 77, 94, 0.14);
+    }
+
+    .tower::before {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      top: -50px;
+
+      transform:
+        translateX(-50%);
+
+      width: 0;
+      height: 0;
+
+      border-left:
+        29px solid transparent;
+
+      border-right:
+        29px solid transparent;
+
+      border-bottom:
+        50px solid #526985;
+    }
+
+    .tower::after {
+      content: "✦";
+
+      position: absolute;
+
+      top: 32px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      color: #b78c49;
+    }
+
+    .t1 {
+      left: 20px;
+      height: 130px;
+    }
+
+    .t2 {
+      left: 86px;
+      height: 198px;
+      width: 54px;
+    }
+
+    .t3 {
+      right: 20px;
+      height: 150px;
+    }
+
+    .castle-center {
+      position: absolute;
+
+      bottom: 0;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      width: 105px;
+      height: 112px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #efe9df,
+          #fffaf0,
+          #ded4c8
+        );
+
+      border:
+        1px solid
+        rgba(72, 77, 94, 0.14);
+    }
+
+    .castle-door {
+      position: absolute;
+
+      width: 32px;
+      height: 58px;
+
+      left: 50%;
+      bottom: 0;
+
+      transform:
+        translateX(-50%);
+
+      background: var(--navy);
+
+      border-radius:
+        18px 18px 0 0;
+    }
+
+    .robot-orbit {
+      position: absolute;
+
+      right: 30px;
+      bottom: 38px;
+
+      width: 125px;
+      height: 125px;
+
+      border:
+        1px solid
+        rgba(199, 155, 75, 0.55);
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .robot-orbit::before {
+      content: "";
+
+      width: 82px;
+      height: 82px;
+
+      border:
+        1px dashed
+        rgba(199, 155, 75, 0.6);
+
+      border-radius: 50%;
+
+      position: absolute;
+    }
+
+    .robot-orbit::after {
+      content: "⬡";
+
+      color: var(--navy);
+
+      font-size: 2.7rem;
+
+      transform: rotate(30deg);
+    }
+
+    .scene-line {
+      position: absolute;
+
+      left: -40px;
+      right: -40px;
+      bottom: 98px;
+
+      height: 90px;
+
+      border-top:
+        2px solid
+        rgba(255, 255, 255, 0.85);
+
+      border-radius: 50%;
+    }
+
+    /* =========================================================
+       GENERAL SECTION
+       ========================================================= */
+
+    section {
+      padding: 98px 0;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+    }
+
+    .section-kicker {
+      color: var(--gold);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.2em;
+
+      font-size: 0.68rem;
+
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: var(--navy);
+
+      font-size:
+        clamp(2.2rem, 4vw, 4rem);
+
+      font-weight: 500;
+
+      letter-spacing: -0.035em;
+    }
+
+    .section-description {
+      max-width: 490px;
+
+      color: var(--muted);
+
+      line-height: 1.8;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.92rem;
+    }
+
+    /* =========================================================
+       PROJECTS
+       ========================================================= */
+
+    #projects {
+      background:
+        rgba(255, 255, 255, 0.42);
+
+      border-top:
+        1px solid rgba(199, 155, 75, 0.12);
+
+      border-bottom:
+        1px solid rgba(199, 155, 75, 0.12);
+    }
+
+    .project-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 24px;
+    }
+
+    .project-card {
+      position: relative;
+
+      padding: 30px;
+
+      min-height: 350px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.88),
+          rgba(248,244,236,0.82)
+        );
+
+      border:
+        1px solid rgba(199, 155, 75, 0.22);
+
+      border-radius: var(--radius);
+
+      box-shadow:
+        0 10px 30px
+        rgba(45, 54, 72, 0.05);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform:
+        translateY(-7px);
+
+      box-shadow:
+        0 22px 50px
+        rgba(45, 54, 72, 0.1);
+    }
+
+    .project-number {
+      position: absolute;
+
+      right: 24px;
+      top: 20px;
+
+      font-size: 4rem;
+
+      color:
+        rgba(199, 155, 75, 0.11);
+
+      line-height: 1;
+    }
+
+    .project-icon {
+      width: 72px;
+      height: 72px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      margin-bottom: 32px;
+
+      font-size: 1.7rem;
+
+      color: var(--navy);
+
+      border:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle,
+          #fffaf0,
+          #edf2f6
+        );
+    }
+
+    .project-card h3 {
+      color: var(--navy);
+
+      font-size: 1.65rem;
+
+      font-weight: 500;
+
+      margin-bottom: 16px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+
+      line-height: 1.8;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.9rem;
+
+      margin-bottom: 26px;
+    }
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns:
+        0.8fr 1.2fr;
+
+      gap: 70px;
+
+      align-items: center;
+    }
+
+    .about-art {
+      min-height: 430px;
+
+      border-radius:
+        220px 220px 34px 34px;
+
+      position: relative;
+
+      background:
+        linear-gradient(
+          180deg,
+          #dce8f0,
+          #faf4e9 63%
+        );
+
+      border:
+        1px solid var(--border);
+
+      overflow: hidden;
+
+      box-shadow:
+        var(--shadow);
+    }
+
+    .planet-ring {
+      position: absolute;
+
+      width: 220px;
+      height: 220px;
+
+      border:
+        1px solid
+        rgba(199,155,75,0.55);
+
+      border-radius: 50%;
+
+      left: 50%;
+      top: 44%;
+
+      transform:
+        translate(-50%, -50%);
+    }
+
+    .planet-ring::before {
+      content: "";
+
+      position: absolute;
+
+      left: -55px;
+      top: 98px;
+
+      width: 330px;
+      height: 42px;
+
+      border:
+        1px solid
+        rgba(199,155,75,0.55);
+
+      border-radius: 50%;
+
+      transform: rotate(-18deg);
+    }
+
+    .planet-core {
+      position: absolute;
+
+      width: 108px;
+      height: 108px;
+
+      left: 50%;
+      top: 44%;
+
+      transform:
+        translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 30% 30%,
+          #faf8f2,
+          #7d94b6
+        );
+
+      box-shadow:
+        0 0 35px
+        rgba(255,255,255,0.6);
+    }
+
+    .about-sparkle {
+      position: absolute;
+
+      font-size: 2rem;
+
+      color: var(--gold);
+    }
+
+    .about-copy p {
+      font-family:
+        Arial,
+        sans-serif;
+
+      line-height: 1.95;
+
+      color: var(--muted);
+
+      max-width: 640px;
+
+      margin:
+        20px 0 30px;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 14px;
+    }
+
+    .fact {
+      border:
+        1px solid rgba(199,155,75,0.18);
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      background:
+        rgba(255,255,255,0.4);
+
+      font-family:
+        Arial,
+        sans-serif;
+    }
+
+    .fact strong {
+      display: block;
+
+      color: var(--navy);
+
+      margin-bottom: 4px;
+
+      font-size: 0.88rem;
+    }
+
+    .fact span {
+      color: var(--muted);
+
+      font-size: 0.79rem;
+    }
+
+    /* =========================================================
+       RESEARCH
+       ========================================================= */
+
+    #research {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(20,39,70,0.98),
+          rgba(9,22,45,1)
+        );
+
+      color: white;
+      overflow: hidden;
+    }
+
+    #research h2 {
+      color: #fffaf0;
+    }
+
+    #research .section-kicker {
+      color: var(--gold-light);
+    }
+
+    #research .section-description {
+      color: #bfc8d5;
+    }
+
+    .research-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 18px;
+    }
+
+    .research-item {
+      padding: 30px 22px;
+
+      border:
+        1px solid rgba(231,201,135,0.22);
+
+      border-radius: 20px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .research-item .symbol {
+      color: var(--gold-light);
+
+      font-size: 2rem;
+
+      margin-bottom: 28px;
+    }
+
+    .research-item h3 {
+      font-size: 1.15rem;
+
+      color: #fff9e9;
+
+      margin-bottom: 12px;
+    }
+
+    .research-item p {
+      font-family:
+        Arial,
+        sans-serif;
+
+      color: #b8c3d2;
+
+      font-size: 0.82rem;
+
+      line-height: 1.7;
+    }
+
+    /* =========================================================
+       CONTACT
+       ========================================================= */
+
+    .contact-card {
+      position: relative;
+
+      border:
+        1px solid rgba(199,155,75,0.3);
+
+      border-radius: 32px;
+
+      padding: 70px;
+
+      text-align: center;
+
+      background:
+        rgba(255,255,255,0.58);
+
+      box-shadow:
+        var(--shadow);
+
+      overflow: hidden;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 20px;
+    }
+
+    .contact-card p {
+      max-width: 620px;
+
+      margin: 0 auto 30px;
+
+      color: var(--muted);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      line-height: 1.8;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      padding: 36px 0;
+
+      background: var(--navy-deep);
+
+      color: #d9e0ec;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.78rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .storybook-scene {
+        height: 430px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .research-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width:
+          min(100% - 26px, 1180px);
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      h1 {
+        font-size: 3.8rem;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card {
+        padding: 48px 22px;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== NAV ===================== -->
+
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+
+        <a href="#home" class="brand">
+          <span class="brand-mark">✦</span>
+          <span>Rosy Qin</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+      </nav>
+    </div>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+
+  <header id="home" class="hero">
+
+    <div class="star large"
+         style="left: 6%; top: 18%;"></div>
+
+    <div class="star"
+         style="left: 47%; top: 12%; animation-delay: .8s;"></div>
+
+    <div class="star small"
+         style="right: 11%; top: 30%; animation-delay: 1.4s;"></div>
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="eyebrow">
+          AI · Robotics · Research
+        </div>
+
+        <h1>
+          Rosy<br>
+          Qin
+        </h1>
+
+        <div class="subtitle">
+          AI · Robotics · Synthetic Data · 6D Pose ·
+          Embodied Intelligence
+        </div>
+
+        <p class="hero-note">
+          I build intelligent robotic systems that connect perception,
+          reasoning and physical interaction. My recent work focuses on
+          6D pose estimation, synthetic data generation, robot grasping,
+          embodied intelligence and human-robot interaction.
+        </p>
+
+        <div class="hero-links">
+
+          <a
+            class="button primary"
+            href="https://github.com/Rosemachinegun"
+            target="_blank"
+          >
+            GitHub · Rosemachinegun
+          </a>
+
+          <a
+            class="button"
+            href="#projects"
+          >
+            Selected Work ✦
+          </a>
+
+          <a
+            class="button"
+            href="cv.pdf"
+            target="_blank"
+          >
+            CV
+          </a>
+
+        </div>
+
+        <div class="tags">
+          <span class="tag">ROS2</span>
+          <span class="tag">RealSense</span>
+          <span class="tag">Isaac Sim</span>
+          <span class="tag">Replicator</span>
+          <span class="tag">6D Pose</span>
+          <span class="tag">RGB-D</span>
+          <span class="tag">Point Cloud</span>
+          <span class="tag">Embodied AI</span>
+        </div>
+
+      </div>
+
+      <!-- decorative original fairytale scene, no person -->
+
+      <div class="storybook-scene">
+
+        <div class="scene-moon"></div>
+
+        <div class="mountains">
+          <div class="mountain"></div>
+          <div class="mountain"></div>
+          <div class="mountain"></div>
+        </div>
+
+        <div class="castle">
+
+          <div class="tower t1"></div>
+          <div class="tower t2"></div>
+          <div class="tower t3"></div>
+
+          <div class="castle-center">
+            <div class="castle-door"></div>
+          </div>
+
+        </div>
+
+        <div class="robot-orbit"></div>
+
+        <div class="scene-line"></div>
+
+        <div
+          class="star large"
+          style="top: 105px; left: 70px;"
+        ></div>
+
+        <div
+          class="star"
+          style="top: 170px; left: 130px; animation-delay: 1.2s;"
+        ></div>
+
+        <div
+          class="star small"
+          style="top: 95px; right: 175px; animation-delay: 2s;"
+        ></div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===================== PROJECTS ===================== -->
+
+  <section id="projects">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div>
+          <div class="section-kicker">
+            Selected Work
+          </div>
+
+          <h2>
+            Things I am building.
+          </h2>
+        </div>
+
+        <p class="section-description">
+          Robotics projects spanning perception, 6D pose estimation,
+          simulation, synthetic data, grasping and imitation learning.
+        </p>
+
+      </div>
+
+      <div class="project-grid">
+
+        <!-- 01 -->
+
+        <article class="project-card">
+
+          <span class="project-number">
+            01
+          </span>
+
+          <div class="project-icon">
+            ✧
+          </div>
+
+          <h3>
+            MarvinGrasp / GentoGrasp
+          </h3>
+
+          <p>
+            Real-robot grasping system combining visual perception,
+            object understanding, 6D pose reasoning, bimanual manipulation,
+            grasp planning and voice-command interaction.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Robot Grasping</span>
+            <span class="tag">Bimanual</span>
+            <span class="tag">VLM</span>
+            <span class="tag">Voice</span>
+          </div>
+
+        </article>
+
+        <!-- 02 -->
+
+        <article class="project-card">
+
+          <span class="project-number">
+            02
+          </span>
+
+          <div class="project-icon">
+            ◇
+          </div>
+
+          <h3>
+            FlowPose
+          </h3>
+
+          <p>
+            6D object pose estimation for robot perception and manipulation,
+            exploring object-centric representations, RGB-D observations,
+            point clouds and generalizable pose reasoning.
+          </p>
+
+          <div class="tags">
+            <span class="tag">6D Pose</span>
+            <span class="tag">Point Cloud</span>
+            <span class="tag">RGB-D</span>
+            <span class="tag">Perception</span>
+          </div>
+
+        </article>
+
+        <!-- 03 -->
+
+        <article class="project-card">
+
+          <span class="project-number">
+            03
+          </span>
+
+          <div class="project-icon">
+            ⬡
+          </div>
+
+          <h3>
+            Isaac Sim & Replicator
+          </h3>
+
+          <p>
+            Synthetic-data generation pipelines for robotic perception,
+            including RGB, depth, instance segmentation, bounding boxes,
+            camera parameters and point-cloud related annotations.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Isaac Sim</span>
+            <span class="tag">Synthetic Data</span>
+            <span class="tag">Replicator</span>
+            <span class="tag">Simulation</span>
+          </div>
+
+        </article>
+
+        <!-- 04 -->
+
+        <article class="project-card">
+
+          <span class="project-number">
+            04
+          </span>
+
+          <div class="project-icon">
+            ✦
+          </div>
+
+          <h3>
+            PARIL / Hanoi Tower
+          </h3>
+
+          <p>
+            Real-robot imitation learning experiments involving manipulation
+            tasks such as Hanoi Tower placement, with interest in
+            progress-aware learning and corrective interaction.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Imitation Learning</span>
+            <span class="tag">Real Robot</span>
+            <span class="tag">Manipulation</span>
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+
+  <section id="about">
+
+    <div class="container about-grid">
+
+      <div class="about-art">
+
+        <div class="planet-ring"></div>
+        <div class="planet-core"></div>
+
+        <div
+          class="about-sparkle"
+          style="top: 50px; left: 55px;"
+        >
+          ✦
+        </div>
+
+        <div
+          class="about-sparkle"
+          style="right: 58px; top: 105px; font-size: 1rem;"
+        >
+          ✧
+        </div>
+
+        <div
+          class="about-sparkle"
+          style="left: 90px; bottom: 70px; font-size: 1.4rem;"
+        >
+          ✦
+        </div>
+
+      </div>
+
+      <div class="about-copy">
+
+        <div class="section-kicker">
+          About
+        </div>
+
+        <h2>
+          Between algorithms
+          and the physical world.
+        </h2>
+
+        <p>
+          I am an Artificial Intelligence student with a journalism
+          minor. My work moves between robotics, agents, image generation,
+          computer vision and embodied intelligence.
+          <br><br>
+          I am especially interested in systems that allow robots to
+          understand objects, reason about the physical world and interact
+          naturally with people.
+          Outside robotics, I enjoy photography, visual design and exploring
+          how technology can become more expressive and beautiful.
+        </p>
+
+        <div class="facts">
+
+          <div class="fact">
+            <strong>
+              Artificial Intelligence
+            </strong>
+            <span>
+              Major
+            </span>
+          </div>
+
+          <div class="fact">
+            <strong>
+              Journalism
+            </strong>
+            <span>
+              Minor
+            </span>
+          </div>
+
+          <div class="fact">
+            <strong>
+              Robotics
+            </strong>
+            <span>
+              Perception & manipulation
+            </span>
+          </div>
+
+          <div class="fact">
+            <strong>
+              Visual Culture
+            </strong>
+            <span>
+              Photography & image generation
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================== RESEARCH ===================== -->
+
+  <section id="research">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div>
+          <div class="section-kicker">
+            Research Focus
+          </div>
+
+          <h2>
+            What I care about.
+          </h2>
+        </div>
+
+        <p class="section-description">
+          My current work sits at the intersection of
+          robot perception, simulation, learning and interaction.
+        </p>
+
+      </div>
+
+      <div class="research-grid">
+
+        <div class="research-item">
+
+          <div class="symbol">
+            ◉
+          </div>
+
+          <h3>
+            Robot Perception
+          </h3>
+
+          <p>
+            Understanding objects and scenes from RGB-D,
+            depth and point-cloud observations.
+          </p>
+
+        </div>
+
+        <div class="research-item">
+
+          <div class="symbol">
+            ⬡
+          </div>
+
+          <h3>
+            6D Pose
+          </h3>
+
+          <p>
+            Estimating object pose and geometric structure for
+            manipulation and grasping.
+          </p>
+
+        </div>
+
+        <div class="research-item">
+
+          <div class="symbol">
+            ✦
+          </div>
+
+          <h3>
+            Embodied AI
+          </h3>
+
+          <p>
+            Learning intelligent policies grounded in
+            physical interaction.
+          </p>
+
+        </div>
+
+        <div class="research-item">
+
+          <div class="symbol">
+            ♢
+          </div>
+
+          <h3>
+            Human-Robot Interaction
+          </h3>
+
+          <p>
+            Natural robot interaction through language,
+            vision and multimodal interfaces.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="contact-card">
+
+        <div class="section-kicker">
+          Contact
+        </div>
+
+        <h2>
+          Somewhere between
+          robots and stardust.
+        </h2>
+
+        <p>
+          I am always interested in robotics, embodied intelligence,
+          synthetic data, visual research and creative technology.
+        </p>
+
+        <div class="contact-buttons">
+
+          <a
+            class="button primary"
+            href="https://github.com/Rosemachinegun"
+            target="_blank"
+          >
+            GitHub
+          </a>
+
+          <a
+            class="button"
+            href="mailto:YOUR_EMAIL@example.com"
+          >
+            Email
+          </a>
+
+          <a
+            class="button"
+            href="cv.pdf"
+            target="_blank"
+          >
+            CV
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+
+  <footer>
+
+    <div class="container footer-row">
+
+      <span>
+        ✦ Rosy Qin
+      </span>
+
+      <span>
+        AI · Robotics · Embodied Intelligence
+      </span>
+
+      <span>
+        © <span id="year"></span>
+      </span>
+
+    </div>
+
+  </footer>
+
+  <script>
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
