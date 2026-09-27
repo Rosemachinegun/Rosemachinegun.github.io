@@ -3,38 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Rosy Qin — AI, Robotics, Embodied Intelligence, 6D Pose and Synthetic Data." />
-
-  <title>Rosy Qin | AI & Robotics</title>
+  <title>Rosy Qin | Fairytale Night</title>
 
   <style>
-    /* =========================================================
-       ROSY QIN · FAIRYTALE RESEARCH PORTFOLIO
-       ========================================================= */
-
     :root {
-      --cream: #fbf7ee;
-      --paper: #fffdf7;
-      --paper-soft: #f7f0e6;
+      --bg-top: #0d1830;
+      --bg-mid: #1e2f5a;
+      --bg-bottom: #3c4d79;
 
-      --navy: #142746;
-      --navy-deep: #09162d;
-      --blue: #7188ad;
-      --blue-light: #dbe7f3;
+      --moon: #fff4c7;
+      --moon-glow: rgba(255, 239, 170, 0.35);
 
-      --gold: #c79b4b;
-      --gold-light: #e7c987;
-      --rose: #d8a7a5;
-
-      --text: #1d2a3d;
-      --muted: #6c7582;
-
-      --border: rgba(199, 155, 75, 0.33);
-
-      --shadow:
-        0 18px 45px rgba(35, 45, 65, 0.09);
-
-      --radius: 24px;
+      --gold: #f3d27b;
+      --gold-soft: #f8e7b2;
+      --white-soft: rgba(255,255,255,0.88);
+      --text-main: #fdf8f0;
+      --text-sub: rgba(255,248,235,0.82);
+      --card: rgba(255,255,255,0.09);
+      --card-border: rgba(255,255,255,0.18);
+      --navy-dark: #09101f;
+      --mist: rgba(255,255,255,0.08);
     }
 
     * {
@@ -43,1851 +31,790 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(to bottom, var(--bg-top), var(--bg-mid) 45%, var(--bg-bottom));
+      color: var(--text-main);
     }
 
     body {
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+      position: relative;
+    }
 
+    /* ===== Sky layers ===== */
+    .sky {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
       background:
-        radial-gradient(
-          circle at 20% 0%,
-          rgba(255, 255, 255, 0.95),
-          transparent 35%
-        ),
-        linear-gradient(
-          180deg,
-          #fbf8ef 0%,
-          #f7f0e5 45%,
-          #eef3f7 100%
-        );
-
-      color: var(--text);
-      overflow-x: hidden;
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,0.10), transparent 22%),
+        radial-gradient(circle at 80% 15%, rgba(255,255,255,0.06), transparent 18%),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06), transparent 28%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .moon {
+      position: absolute;
+      top: 72px;
+      right: 120px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fffbe8 0%, var(--moon) 45%, #e7cf8a 100%);
+      box-shadow:
+        0 0 30px var(--moon-glow),
+        0 0 70px rgba(255, 236, 150, 0.25),
+        0 0 120px rgba(255, 236, 150, 0.14);
+      z-index: 2;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
+    .moon::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 25px;
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, rgba(13,24,48,0.95), rgba(30,47,90,0.85));
     }
 
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: auto;
+    .glow-haze {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,240,180,0.11), transparent 70%);
+      filter: blur(18px);
+      z-index: 1;
+      pointer-events: none;
     }
 
-    /* =========================================================
-       DECORATIVE STARS
-       ========================================================= */
+    /* ===== Twinkle stars ===== */
+    .star-field,
+    .magic-field,
+    .shooting-field {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
 
     .star {
       position: absolute;
-      width: 8px;
-      height: 8px;
-      background: var(--gold);
-      transform: rotate(45deg);
-      opacity: 0.8;
-      animation: shimmer 4s ease-in-out infinite;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(255,255,255,0.95), 0 0 14px rgba(255,240,190,0.7);
+      animation: twinkle linear infinite;
+      opacity: 0.2;
     }
 
-    .star::before,
-    .star::after {
+    .star.big {
+      width: 5px;
+      height: 5px;
+      background: #fff2b2;
+      box-shadow: 0 0 10px rgba(255,248,200,1), 0 0 22px rgba(255,226,140,0.95);
+    }
+
+    .star.cross::before,
+    .star.cross::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background: inherit;
-      border-radius: 50%;
-      filter: blur(2px);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,243,201,0.95);
+      border-radius: 999px;
     }
 
-    .star.small {
-      width: 4px;
-      height: 4px;
-    }
-
-    .star.large {
-      width: 12px;
+    .star.cross::before {
+      width: 1px;
       height: 12px;
+      box-shadow: 0 0 8px rgba(255,240,180,0.65);
     }
 
-    @keyframes shimmer {
-      0%,
-      100% {
-        opacity: 0.35;
-        transform: rotate(45deg) scale(0.75);
-      }
+    .star.cross::after {
+      width: 12px;
+      height: 1px;
+      box-shadow: 0 0 8px rgba(255,240,180,0.65);
+    }
 
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.18;
+        transform: scale(0.6);
+      }
       50% {
         opacity: 1;
-        transform: rotate(45deg) scale(1.15);
+        transform: scale(1.45);
       }
     }
 
-    /* =========================================================
-       NAV
-       ========================================================= */
+    /* ===== Shooting stars ===== */
+    .shooting-star {
+      position: absolute;
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,243,195,0.95), rgba(255,255,255,0));
+      filter: drop-shadow(0 0 8px rgba(255,240,180,0.85));
+      transform: rotate(-25deg);
+      animation: shoot 5s linear infinite;
+      opacity: 0;
+    }
 
-    .nav-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    @keyframes shoot {
+      0% {
+        opacity: 0;
+        transform: translate(0,0) rotate(-25deg) scaleX(0.2);
+      }
+      8% {
+        opacity: 1;
+      }
+      30% {
+        opacity: 1;
+        transform: translate(-240px,160px) rotate(-25deg) scaleX(1);
+      }
+      45% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-340px,220px) rotate(-25deg) scaleX(1);
+      }
+    }
 
-      backdrop-filter: blur(18px);
-      background: rgba(251, 247, 238, 0.86);
+    /* ===== Mist ===== */
+    .mist {
+      position: absolute;
+      left: -10%;
+      width: 120%;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.12), transparent 70%);
+      filter: blur(18px);
+      opacity: 0.55;
+      animation: drift 20s ease-in-out infinite alternate;
+      z-index: 4;
+    }
 
-      border-bottom: 1px solid rgba(199, 155, 75, 0.18);
+    .mist.m1 { bottom: 180px; }
+    .mist.m2 {
+      bottom: 115px;
+      opacity: 0.38;
+      animation-duration: 28s;
+    }
+
+    @keyframes drift {
+      from { transform: translateX(-2%) translateY(0px); }
+      to   { transform: translateX(2%) translateY(10px); }
+    }
+
+    /* ===== Main content ===== */
+    .wrapper {
+      position: relative;
+      z-index: 10;
+      width: min(1180px, calc(100% - 48px));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
     }
 
     nav {
-      min-height: 76px;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 24px;
+      padding: 28px 0 10px;
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-
-      font-size: 1.18rem;
-      color: var(--navy);
-      font-weight: bold;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-
-      display: grid;
-      place-items: center;
-
-      color: var(--gold);
-
-      box-shadow:
-        inset 0 0 0 4px rgba(199, 155, 75, 0.08);
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+      color: var(--gold-soft);
+      text-shadow: 0 0 12px rgba(255,240,180,0.18);
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
-      align-items: center;
+      gap: 26px;
+      list-style: none;
+      font-size: 0.95rem;
+      color: var(--white-soft);
     }
 
     .nav-links a {
-      color: var(--navy);
-      font-size: 0.92rem;
+      color: inherit;
+      text-decoration: none;
       position: relative;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-soft);
     }
 
     .nav-links a::after {
       content: "";
       position: absolute;
-
       left: 50%;
-      bottom: -8px;
-
+      bottom: -7px;
       width: 0;
       height: 1px;
-
-      background: var(--gold);
-
-      transition: 0.25s ease;
+      background: var(--gold-soft);
       transform: translateX(-50%);
+      transition: 0.25s ease;
     }
 
     .nav-links a:hover::after {
       width: 100%;
     }
 
-    /* =========================================================
-       HERO
-       ========================================================= */
-
     .hero {
-      position: relative;
-      padding: 96px 0 88px;
-
-      min-height: 670px;
-
-      display: flex;
-      align-items: center;
-
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-      width: 720px;
-      height: 720px;
-
-      right: -280px;
-      top: -160px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(219, 231, 243, 0.72),
-          rgba(219, 231, 243, 0.18) 48%,
-          transparent 72%
-        );
-    }
-
-    .hero::after {
-      content: "";
-
-      position: absolute;
-      left: -80px;
-      bottom: -100px;
-
-      width: 500px;
-      height: 270px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          ellipse,
-          rgba(216, 167, 165, 0.13),
-          transparent 70%
-        );
-    }
-
-    .hero-grid {
-      width: 100%;
-
+      flex: 1;
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-
       align-items: center;
-      gap: 70px;
+      gap: 40px;
+      padding-bottom: 50px;
+    }
 
-      position: relative;
-      z-index: 1;
+    .hero-left {
+      padding-right: 20px;
     }
 
     .eyebrow {
+      color: var(--gold-soft);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.74rem;
-      color: var(--gold);
-      margin-bottom: 16px;
+      font-size: 0.75rem;
+      margin-bottom: 18px;
     }
 
     h1 {
-      color: var(--navy);
-
-      font-size:
-        clamp(4rem, 7vw, 7rem);
-
-      line-height: 0.92;
-
+      font-size: clamp(3.8rem, 7vw, 7rem);
+      line-height: 0.95;
       font-weight: 500;
-      letter-spacing: -0.055em;
-
-      margin-bottom: 26px;
+      letter-spacing: -0.045em;
+      text-shadow: 0 4px 22px rgba(5,10,20,0.15);
     }
 
     .subtitle {
-      font-size:
-        clamp(1rem, 1.6vw, 1.18rem);
-
-      line-height: 1.7;
-
-      max-width: 660px;
-
-      color: #41516a;
-
-      margin-bottom: 24px;
-    }
-
-    .hero-note {
-      max-width: 660px;
-
+      margin-top: 20px;
+      font-size: 1.05rem;
       line-height: 1.9;
-
-      color: var(--muted);
-
-      margin-bottom: 28px;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 0.95rem;
+      color: var(--text-sub);
+      max-width: 640px;
+      font-family: Arial, sans-serif;
     }
 
-    .hero-links {
+    .cta-row {
+      margin-top: 30px;
       display: flex;
+      gap: 14px;
       flex-wrap: wrap;
-      gap: 12px;
-
-      margin-bottom: 32px;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-
-      padding: 12px 19px;
-
+    .btn {
+      padding: 12px 20px;
       border-radius: 999px;
-
-      border: 1px solid var(--border);
-
-      background:
-        rgba(255, 255, 255, 0.58);
-
-      color: var(--navy);
-
-      transition: 0.25s ease;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 0.88rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.92rem;
+      backdrop-filter: blur(8px);
+      transition: 0.3s ease;
+      box-shadow: 0 8px 24px rgba(4, 8, 18, 0.12);
     }
 
-    .button:hover {
+    .btn:hover {
       transform: translateY(-2px);
-
-      background: rgba(255, 255, 255, 0.95);
-
-      box-shadow:
-        0 8px 25px rgba(30, 40, 60, 0.08);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,245,210,0.55);
+      box-shadow: 0 12px 28px rgba(4, 8, 18, 0.2);
     }
 
-    .button.primary {
-      background: var(--navy);
-      color: white;
-      border-color: var(--navy);
+    .btn.primary {
+      background: linear-gradient(to bottom, rgba(248,231,178,0.24), rgba(214,180,96,0.18));
+      border-color: rgba(248,231,178,0.52);
+      color: #fff9ea;
     }
 
-    .tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      padding: 8px 12px;
-
-      border-radius: 999px;
-
-      background:
-        rgba(113, 136, 173, 0.1);
-
-      border:
-        1px solid rgba(113, 136, 173, 0.16);
-
-      color: #455975;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 0.72rem;
-    }
-
-    /* =========================================================
-       HERO ILLUSTRATION
-       no people
-       ========================================================= */
-
-    .storybook-scene {
+    .hero-card {
       position: relative;
-
-      height: 510px;
-
-      border-radius:
-        180px 180px 32px 32px;
-
+      height: 470px;
+      border-radius: 34px;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      border: 1px solid var(--card-border);
       overflow: hidden;
-
-      background:
-        linear-gradient(
-          180deg,
-          #b8cbe4 0%,
-          #e6e9e5 41%,
-          #f8eedf 72%,
-          #e7d8c8 100%
-        );
-
-      border:
-        1px solid rgba(199, 155, 75, 0.3);
-
+      backdrop-filter: blur(10px);
       box-shadow:
-        var(--shadow);
+        0 18px 50px rgba(7,12,24,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
-    .scene-moon {
+    /* ===== magical window illustration ===== */
+    .window-frame {
       position: absolute;
-
-      width: 105px;
-      height: 105px;
-
-      border-radius: 50%;
-
-      right: 46px;
-      top: 55px;
-
-      background:
-        radial-gradient(
-          circle at 35% 35%,
-          #fff9da,
-          #f2d997 56%,
-          #d3b46c 100%
-        );
-
-      box-shadow:
-        0 0 40px rgba(238, 213, 146, 0.75);
+      inset: 0;
+      pointer-events: none;
     }
 
-    .scene-moon::after {
-      content: "";
-
+    .arch {
       position: absolute;
-
-      width: 100px;
-      height: 100px;
-
-      background: #bccde3;
-
-      border-radius: 50%;
-
-      transform:
-        translate(30px, -12px);
+      left: 50%;
+      top: 38px;
+      transform: translateX(-50%);
+      width: 78%;
+      height: 74%;
+      border: 2px solid rgba(255,243,196,0.4);
+      border-bottom: none;
+      border-radius: 200px 200px 0 0;
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.04);
     }
 
-    .mountains {
+    .window-line-v {
       position: absolute;
+      top: 38px;
+      bottom: 85px;
+      left: 50%;
+      width: 2px;
+      background: rgba(255,243,196,0.28);
+      transform: translateX(-50%);
+    }
 
+    .window-line-h {
+      position: absolute;
+      left: 11%;
+      right: 11%;
+      top: 53%;
+      height: 2px;
+      background: rgba(255,243,196,0.18);
+    }
+
+    .magic-swish {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: 90px;
+      height: 120px;
+      z-index: 4;
+    }
+
+    .magic-swish svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .spark-group {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+    }
+
+    .spark {
+      position: absolute;
+      color: #fff1bb;
+      text-shadow: 0 0 10px rgba(255,235,170,0.75), 0 0 22px rgba(255,225,120,0.45);
+      animation: pulseSpark 3.2s ease-in-out infinite;
+      opacity: 0.8;
+      user-select: none;
+    }
+
+    @keyframes pulseSpark {
+      0%, 100% {
+        transform: scale(0.85) rotate(0deg);
+        opacity: 0.35;
+      }
+      50% {
+        transform: scale(1.25) rotate(15deg);
+        opacity: 1;
+      }
+    }
+
+    .quote-box {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 20px;
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+      background: rgba(7, 14, 28, 0.26);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(6px);
+      z-index: 6;
+    }
+
+    .quote-box p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(255,249,236,0.88);
+      font-family: Arial, sans-serif;
+    }
+
+    .quote-box strong {
+      color: var(--gold-soft);
+      font-family: Georgia, serif;
+      letter-spacing: 0.02em;
+    }
+
+    /* ===== Hills / Castle silhouette ===== */
+    .ground {
+      position: absolute;
       left: 0;
       right: 0;
-      bottom: 150px;
-
-      height: 210px;
-
-      opacity: 0.55;
-    }
-
-    .mountain {
-      position: absolute;
-
       bottom: 0;
-
-      width: 0;
-      height: 0;
-
-      border-left:
-        130px solid transparent;
-
-      border-right:
-        130px solid transparent;
-
-      border-bottom:
-        220px solid #8298b5;
+      height: 42%;
+      z-index: 2;
     }
 
-    .mountain:nth-child(1) {
-      left: -50px;
-    }
-
-    .mountain:nth-child(2) {
-      left: 120px;
-      border-bottom-color: #91a5be;
-      transform: scale(0.86);
-    }
-
-    .mountain:nth-child(3) {
-      right: -60px;
-      border-bottom-color: #7890ad;
-      transform: scale(1.08);
-    }
-
-    .castle {
+    .hill-back,
+    .hill-front {
       position: absolute;
+      bottom: 0;
+      width: 120%;
+      left: -10%;
+      border-radius: 50% 50% 0 0;
+    }
 
-      left: 50%;
-      bottom: 115px;
+    .hill-back {
+      height: 52%;
+      background: linear-gradient(to top, #1a2745, #24345b);
+      opacity: 0.92;
+    }
 
-      width: 230px;
-      height: 250px;
+    .hill-front {
+      height: 38%;
+      background: linear-gradient(to top, #10192f, #182340);
+      z-index: 2;
+    }
 
-      transform:
-        translateX(-50%);
-
-      filter:
-        drop-shadow(
-          0 15px 12px
-          rgba(64, 71, 89, 0.16)
-        );
+    .castle-silhouette {
+      position: absolute;
+      bottom: 105px;
+      left: 54%;
+      transform: translateX(-50%);
+      width: 190px;
+      height: 180px;
+      z-index: 3;
+      filter: drop-shadow(0 0 14px rgba(255, 224, 140, 0.12));
     }
 
     .tower {
       position: absolute;
       bottom: 0;
-
-      width: 44px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #efe9df,
-          #faf6ee,
-          #ded7cf
-        );
-
-      border:
-        1px solid
-        rgba(72, 77, 94, 0.14);
+      background: #0f1730;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
     }
 
     .tower::before {
       content: "";
-
       position: absolute;
-
       left: 50%;
-      top: -50px;
-
-      transform:
-        translateX(-50%);
-
+      transform: translateX(-50%);
+      top: -34px;
       width: 0;
       height: 0;
-
-      border-left:
-        29px solid transparent;
-
-      border-right:
-        29px solid transparent;
-
-      border-bottom:
-        50px solid #526985;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 34px solid #162245;
     }
 
-    .tower::after {
-      content: "✦";
+    .tower.t1 { left: 0; width: 34px; height: 85px; }
+    .tower.t2 { left: 42px; width: 42px; height: 132px; }
+    .tower.t3 { left: 92px; width: 54px; height: 105px; }
+    .tower.t4 { right: 6px; width: 30px; height: 78px; }
 
+    .castle-body {
       position: absolute;
-
-      top: 32px;
-      left: 50%;
-
-      transform:
-        translateX(-50%);
-
-      color: #b78c49;
-    }
-
-    .t1 {
-      left: 20px;
-      height: 130px;
-    }
-
-    .t2 {
-      left: 86px;
-      height: 198px;
-      width: 54px;
-    }
-
-    .t3 {
-      right: 20px;
-      height: 150px;
-    }
-
-    .castle-center {
-      position: absolute;
-
+      left: 34px;
+      right: 18px;
       bottom: 0;
-      left: 50%;
-
-      transform:
-        translateX(-50%);
-
-      width: 105px;
-      height: 112px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #efe9df,
-          #fffaf0,
-          #ded4c8
-        );
-
-      border:
-        1px solid
-        rgba(72, 77, 94, 0.14);
+      height: 70px;
+      background: #10192f;
     }
 
-    .castle-door {
+    /* ===== cursor magic particles ===== */
+    .cursor-particle {
       position: absolute;
-
-      width: 32px;
-      height: 58px;
-
-      left: 50%;
-      bottom: 0;
-
-      transform:
-        translateX(-50%);
-
-      background: var(--navy);
-
-      border-radius:
-        18px 18px 0 0;
-    }
-
-    .robot-orbit {
-      position: absolute;
-
-      right: 30px;
-      bottom: 38px;
-
-      width: 125px;
-      height: 125px;
-
-      border:
-        1px solid
-        rgba(199, 155, 75, 0.55);
-
+      width: 8px;
+      height: 8px;
+      pointer-events: none;
+      z-index: 20;
       border-radius: 50%;
-
-      display: grid;
-      place-items: center;
+      background: radial-gradient(circle, #fff8d2 0%, #f4d98c 55%, rgba(244,217,140,0) 72%);
+      box-shadow: 0 0 10px rgba(255,235,170,0.85);
+      animation: floatOut 1s forwards ease-out;
     }
 
-    .robot-orbit::before {
-      content: "";
-
-      width: 82px;
-      height: 82px;
-
-      border:
-        1px dashed
-        rgba(199, 155, 75, 0.6);
-
-      border-radius: 50%;
-
-      position: absolute;
+    @keyframes floatOut {
+      0% {
+        opacity: 1;
+        transform: translate(0,0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0.2);
+      }
     }
 
-    .robot-orbit::after {
-      content: "⬡";
-
-      color: var(--navy);
-
-      font-size: 2.7rem;
-
-      transform: rotate(30deg);
-    }
-
-    .scene-line {
-      position: absolute;
-
-      left: -40px;
-      right: -40px;
-      bottom: 98px;
-
-      height: 90px;
-
-      border-top:
-        2px solid
-        rgba(255, 255, 255, 0.85);
-
-      border-radius: 50%;
-    }
-
-    /* =========================================================
-       GENERAL SECTION
-       ========================================================= */
-
-    section {
-      padding: 98px 0;
-      position: relative;
-    }
-
-    .section-header {
-      margin-bottom: 48px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-    }
-
-    .section-kicker {
-      color: var(--gold);
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.2em;
-
-      font-size: 0.68rem;
-
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      color: var(--navy);
-
-      font-size:
-        clamp(2.2rem, 4vw, 4rem);
-
-      font-weight: 500;
-
-      letter-spacing: -0.035em;
-    }
-
-    .section-description {
-      max-width: 490px;
-
-      color: var(--muted);
-
-      line-height: 1.8;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 0.92rem;
-    }
-
-    /* =========================================================
-       PROJECTS
-       ========================================================= */
-
-    #projects {
-      background:
-        rgba(255, 255, 255, 0.42);
-
-      border-top:
-        1px solid rgba(199, 155, 75, 0.12);
-
-      border-bottom:
-        1px solid rgba(199, 155, 75, 0.12);
-    }
-
-    .project-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 24px;
-    }
-
-    .project-card {
-      position: relative;
-
-      padding: 30px;
-
-      min-height: 350px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,0.88),
-          rgba(248,244,236,0.82)
-        );
-
-      border:
-        1px solid rgba(199, 155, 75, 0.22);
-
-      border-radius: var(--radius);
-
-      box-shadow:
-        0 10px 30px
-        rgba(45, 54, 72, 0.05);
-
-      overflow: hidden;
-
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform:
-        translateY(-7px);
-
-      box-shadow:
-        0 22px 50px
-        rgba(45, 54, 72, 0.1);
-    }
-
-    .project-number {
-      position: absolute;
-
-      right: 24px;
-      top: 20px;
-
-      font-size: 4rem;
-
-      color:
-        rgba(199, 155, 75, 0.11);
-
-      line-height: 1;
-    }
-
-    .project-icon {
-      width: 72px;
-      height: 72px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 50%;
-
-      margin-bottom: 32px;
-
-      font-size: 1.7rem;
-
-      color: var(--navy);
-
-      border:
-        1px solid var(--border);
-
-      background:
-        radial-gradient(
-          circle,
-          #fffaf0,
-          #edf2f6
-        );
-    }
-
-    .project-card h3 {
-      color: var(--navy);
-
-      font-size: 1.65rem;
-
-      font-weight: 500;
-
-      margin-bottom: 16px;
-    }
-
-    .project-card p {
-      color: var(--muted);
-
-      line-height: 1.8;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 0.9rem;
-
-      margin-bottom: 26px;
-    }
-
-    /* =========================================================
-       ABOUT
-       ========================================================= */
-
-    .about-grid {
-      display: grid;
-
-      grid-template-columns:
-        0.8fr 1.2fr;
-
-      gap: 70px;
-
-      align-items: center;
-    }
-
-    .about-art {
-      min-height: 430px;
-
-      border-radius:
-        220px 220px 34px 34px;
-
-      position: relative;
-
-      background:
-        linear-gradient(
-          180deg,
-          #dce8f0,
-          #faf4e9 63%
-        );
-
-      border:
-        1px solid var(--border);
-
-      overflow: hidden;
-
-      box-shadow:
-        var(--shadow);
-    }
-
-    .planet-ring {
-      position: absolute;
-
-      width: 220px;
-      height: 220px;
-
-      border:
-        1px solid
-        rgba(199,155,75,0.55);
-
-      border-radius: 50%;
-
-      left: 50%;
-      top: 44%;
-
-      transform:
-        translate(-50%, -50%);
-    }
-
-    .planet-ring::before {
-      content: "";
-
-      position: absolute;
-
-      left: -55px;
-      top: 98px;
-
-      width: 330px;
-      height: 42px;
-
-      border:
-        1px solid
-        rgba(199,155,75,0.55);
-
-      border-radius: 50%;
-
-      transform: rotate(-18deg);
-    }
-
-    .planet-core {
-      position: absolute;
-
-      width: 108px;
-      height: 108px;
-
-      left: 50%;
-      top: 44%;
-
-      transform:
-        translate(-50%, -50%);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle at 30% 30%,
-          #faf8f2,
-          #7d94b6
-        );
-
-      box-shadow:
-        0 0 35px
-        rgba(255,255,255,0.6);
-    }
-
-    .about-sparkle {
-      position: absolute;
-
-      font-size: 2rem;
-
-      color: var(--gold);
-    }
-
-    .about-copy p {
-      font-family:
-        Arial,
-        sans-serif;
-
-      line-height: 1.95;
-
-      color: var(--muted);
-
-      max-width: 640px;
-
-      margin:
-        20px 0 30px;
-    }
-
-    .facts {
-      display: grid;
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 14px;
-    }
-
-    .fact {
-      border:
-        1px solid rgba(199,155,75,0.18);
-
-      border-radius: 18px;
-
-      padding: 18px;
-
-      background:
-        rgba(255,255,255,0.4);
-
-      font-family:
-        Arial,
-        sans-serif;
-    }
-
-    .fact strong {
-      display: block;
-
-      color: var(--navy);
-
-      margin-bottom: 4px;
-
-      font-size: 0.88rem;
-    }
-
-    .fact span {
-      color: var(--muted);
-
-      font-size: 0.79rem;
-    }
-
-    /* =========================================================
-       RESEARCH
-       ========================================================= */
-
-    #research {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(20,39,70,0.98),
-          rgba(9,22,45,1)
-        );
-
-      color: white;
-      overflow: hidden;
-    }
-
-    #research h2 {
-      color: #fffaf0;
-    }
-
-    #research .section-kicker {
-      color: var(--gold-light);
-    }
-
-    #research .section-description {
-      color: #bfc8d5;
-    }
-
-    .research-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
-      gap: 18px;
-    }
-
-    .research-item {
-      padding: 30px 22px;
-
-      border:
-        1px solid rgba(231,201,135,0.22);
-
-      border-radius: 20px;
-
-      background:
-        rgba(255,255,255,0.035);
-
-      backdrop-filter: blur(10px);
-    }
-
-    .research-item .symbol {
-      color: var(--gold-light);
-
-      font-size: 2rem;
-
-      margin-bottom: 28px;
-    }
-
-    .research-item h3 {
-      font-size: 1.15rem;
-
-      color: #fff9e9;
-
-      margin-bottom: 12px;
-    }
-
-    .research-item p {
-      font-family:
-        Arial,
-        sans-serif;
-
-      color: #b8c3d2;
-
-      font-size: 0.82rem;
-
-      line-height: 1.7;
-    }
-
-    /* =========================================================
-       CONTACT
-       ========================================================= */
-
-    .contact-card {
-      position: relative;
-
-      border:
-        1px solid rgba(199,155,75,0.3);
-
-      border-radius: 32px;
-
-      padding: 70px;
-
-      text-align: center;
-
-      background:
-        rgba(255,255,255,0.58);
-
-      box-shadow:
-        var(--shadow);
-
-      overflow: hidden;
-    }
-
-    .contact-card h2 {
-      margin-bottom: 20px;
-    }
-
-    .contact-card p {
-      max-width: 620px;
-
-      margin: 0 auto 30px;
-
-      color: var(--muted);
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      line-height: 1.8;
-    }
-
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-
-    footer {
-      padding: 36px 0;
-
-      background: var(--navy-deep);
-
-      color: #d9e0ec;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 0.78rem;
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-
+    /* ===== responsive ===== */
     @media (max-width: 900px) {
+      html, body {
+        overflow: auto;
+      }
+
+      .wrapper {
+        height: auto;
+        min-height: 100%;
+      }
+
+      nav {
+        padding-top: 24px;
+      }
 
       .nav-links {
         display: none;
       }
 
-      .hero-grid,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .storybook-scene {
-        height: 430px;
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .research-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
       .hero {
-        padding-top: 60px;
+        grid-template-columns: 1fr;
+        padding: 32px 0 70px;
+      }
+
+      .hero-left {
+        padding-right: 0;
+      }
+
+      .hero-card {
+        height: 420px;
+      }
+
+      .moon {
+        top: 70px;
+        right: 28px;
+        width: 95px;
+        height: 95px;
+      }
+
+      .moon::after {
+        width: 92px;
+        height: 92px;
       }
     }
 
     @media (max-width: 600px) {
-
-      .container {
-        width:
-          min(100% - 26px, 1180px);
-      }
-
-      section {
-        padding: 70px 0;
+      .wrapper {
+        width: min(100% - 24px, 1180px);
       }
 
       h1 {
-        font-size: 3.8rem;
+        font-size: 3.3rem;
       }
 
-      .research-grid {
-        grid-template-columns: 1fr;
+      .subtitle {
+        font-size: 0.98rem;
       }
 
-      .facts {
-        grid-template-columns: 1fr;
+      .hero-card {
+        height: 380px;
       }
 
-      .contact-card {
-        padding: 48px 22px;
-      }
-
-      .footer-row {
-        flex-direction: column;
-        text-align: center;
+      .quote-box p {
+        font-size: 0.86rem;
       }
     }
   </style>
 </head>
-
 <body>
+  <div class="sky"></div>
+  <div class="glow-haze"></div>
+  <div class="moon"></div>
 
-  <!-- ===================== NAV ===================== -->
+  <div class="star-field" id="starField"></div>
+  <div class="shooting-field" id="shootingField"></div>
+  <div class="magic-field" id="magicField"></div>
 
-  <div class="nav-wrap">
-    <div class="container">
-      <nav>
+  <div class="mist m1"></div>
+  <div class="mist m2"></div>
 
-        <a href="#home" class="brand">
-          <span class="brand-mark">✦</span>
-          <span>Rosy Qin</span>
-        </a>
+  <div class="wrapper">
+    <nav>
+      <div class="brand">✦ Rosy Qin</div>
 
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#research">Research</a>
-          <a href="#contact">Contact</a>
-        </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="https://github.com/Rosemachinegun" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
 
-      </nav>
-    </div>
-  </div>
+    <section class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">Fairytale Robotics Portfolio</div>
+        <h1>Midnight Magic<br>in Motion</h1>
 
-  <!-- ===================== HERO ===================== -->
-
-  <header id="home" class="hero">
-
-    <div class="star large"
-         style="left: 6%; top: 18%;"></div>
-
-    <div class="star"
-         style="left: 47%; top: 12%; animation-delay: .8s;"></div>
-
-    <div class="star small"
-         style="right: 11%; top: 30%; animation-delay: 1.4s;"></div>
-
-    <div class="container hero-grid">
-
-      <div>
-
-        <div class="eyebrow">
-          AI · Robotics · Research
-        </div>
-
-        <h1>
-          Rosy<br>
-          Qin
-        </h1>
-
-        <div class="subtitle">
-          AI · Robotics · Synthetic Data · 6D Pose ·
-          Embodied Intelligence
-        </div>
-
-        <p class="hero-note">
-          I build intelligent robotic systems that connect perception,
-          reasoning and physical interaction. My recent work focuses on
-          6D pose estimation, synthetic data generation, robot grasping,
-          embodied intelligence and human-robot interaction.
+        <p class="subtitle">
+          A 2D fairytale-inspired personal page with hand-painted night atmosphere,
+          moonlight, castle silhouettes, drifting mist, and many magical animated stars.
+          This version is designed as a dreamy landing page for Rosy Qin.
         </p>
 
-        <div class="hero-links">
-
-          <a
-            class="button primary"
-            href="https://github.com/Rosemachinegun"
-            target="_blank"
-          >
-            GitHub · Rosemachinegun
-          </a>
-
-          <a
-            class="button"
-            href="#projects"
-          >
-            Selected Work ✦
-          </a>
-
-          <a
-            class="button"
-            href="cv.pdf"
-            target="_blank"
-          >
-            CV
-          </a>
-
+        <div class="cta-row">
+          <a class="btn primary" href="https://github.com/Rosemachinegun" target="_blank">GitHub · Rosemachinegun</a>
+          <a class="btn" href="#">Enter the Story ✧</a>
         </div>
-
-        <div class="tags">
-          <span class="tag">ROS2</span>
-          <span class="tag">RealSense</span>
-          <span class="tag">Isaac Sim</span>
-          <span class="tag">Replicator</span>
-          <span class="tag">6D Pose</span>
-          <span class="tag">RGB-D</span>
-          <span class="tag">Point Cloud</span>
-          <span class="tag">Embodied AI</span>
-        </div>
-
       </div>
 
-      <!-- decorative original fairytale scene, no person -->
-
-      <div class="storybook-scene">
-
-        <div class="scene-moon"></div>
-
-        <div class="mountains">
-          <div class="mountain"></div>
-          <div class="mountain"></div>
-          <div class="mountain"></div>
+      <div class="hero-card">
+        <div class="window-frame">
+          <div class="arch"></div>
+          <div class="window-line-v"></div>
+          <div class="window-line-h"></div>
         </div>
 
-        <div class="castle">
-
+        <div class="castle-silhouette">
           <div class="tower t1"></div>
           <div class="tower t2"></div>
           <div class="tower t3"></div>
-
-          <div class="castle-center">
-            <div class="castle-door"></div>
-          </div>
-
+          <div class="tower t4"></div>
+          <div class="castle-body"></div>
         </div>
 
-        <div class="robot-orbit"></div>
-
-        <div class="scene-line"></div>
-
-        <div
-          class="star large"
-          style="top: 105px; left: 70px;"
-        ></div>
-
-        <div
-          class="star"
-          style="top: 170px; left: 130px; animation-delay: 1.2s;"
-        ></div>
-
-        <div
-          class="star small"
-          style="top: 95px; right: 175px; animation-delay: 2s;"
-        ></div>
-
-      </div>
-
-    </div>
-  </header>
-
-  <!-- ===================== PROJECTS ===================== -->
-
-  <section id="projects">
-
-    <div class="container">
-
-      <div class="section-header">
-
-        <div>
-          <div class="section-kicker">
-            Selected Work
-          </div>
-
-          <h2>
-            Things I am building.
-          </h2>
+        <div class="magic-swish">
+          <svg viewBox="0 0 800 240" preserveAspectRatio="none">
+            <path
+              d="M25,175 C150,110 255,185 365,128 C468,74 590,95 775,28"
+              fill="none"
+              stroke="rgba(255,230,165,0.95)"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-dasharray="4 8"
+              filter="url(#glow)"
+            />
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2.8" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+          </svg>
         </div>
 
-        <p class="section-description">
-          Robotics projects spanning perception, 6D pose estimation,
-          simulation, synthetic data, grasping and imitation learning.
-        </p>
+        <div class="spark-group">
+          <span class="spark" style="left: 10%; top: 56%; font-size: 18px; animation-delay: 0.2s;">✦</span>
+          <span class="spark" style="left: 22%; top: 48%; font-size: 26px; animation-delay: 1.1s;">✧</span>
+          <span class="spark" style="left: 36%; top: 58%; font-size: 22px; animation-delay: 0.6s;">✦</span>
+          <span class="spark" style="left: 52%; top: 42%; font-size: 24px; animation-delay: 1.8s;">✧</span>
+          <span class="spark" style="left: 66%; top: 34%; font-size: 16px; animation-delay: 1.4s;">✦</span>
+          <span class="spark" style="left: 73%; top: 28%; font-size: 28px; animation-delay: 0.8s;">✧</span>
+          <span class="spark" style="left: 82%; top: 19%; font-size: 14px; animation-delay: 2s;">✦</span>
+        </div>
 
-      </div>
-
-      <div class="project-grid">
-
-        <!-- 01 -->
-
-        <article class="project-card">
-
-          <span class="project-number">
-            01
-          </span>
-
-          <div class="project-icon">
-            ✧
-          </div>
-
-          <h3>
-            MarvinGrasp / GentoGrasp
-          </h3>
-
+        <div class="quote-box">
           <p>
-            Real-robot grasping system combining visual perception,
-            object understanding, 6D pose reasoning, bimanual manipulation,
-            grasp planning and voice-command interaction.
+            <strong>Tonight, the sky is full of promises.</strong><br>
+            Somewhere between moonlight and machinery, imagination becomes form,
+            and magic becomes motion.
           </p>
+        </div>
 
-          <div class="tags">
-            <span class="tag">Robot Grasping</span>
-            <span class="tag">Bimanual</span>
-            <span class="tag">VLM</span>
-            <span class="tag">Voice</span>
-          </div>
-
-        </article>
-
-        <!-- 02 -->
-
-        <article class="project-card">
-
-          <span class="project-number">
-            02
-          </span>
-
-          <div class="project-icon">
-            ◇
-          </div>
-
-          <h3>
-            FlowPose
-          </h3>
-
-          <p>
-            6D object pose estimation for robot perception and manipulation,
-            exploring object-centric representations, RGB-D observations,
-            point clouds and generalizable pose reasoning.
-          </p>
-
-          <div class="tags">
-            <span class="tag">6D Pose</span>
-            <span class="tag">Point Cloud</span>
-            <span class="tag">RGB-D</span>
-            <span class="tag">Perception</span>
-          </div>
-
-        </article>
-
-        <!-- 03 -->
-
-        <article class="project-card">
-
-          <span class="project-number">
-            03
-          </span>
-
-          <div class="project-icon">
-            ⬡
-          </div>
-
-          <h3>
-            Isaac Sim & Replicator
-          </h3>
-
-          <p>
-            Synthetic-data generation pipelines for robotic perception,
-            including RGB, depth, instance segmentation, bounding boxes,
-            camera parameters and point-cloud related annotations.
-          </p>
-
-          <div class="tags">
-            <span class="tag">Isaac Sim</span>
-            <span class="tag">Synthetic Data</span>
-            <span class="tag">Replicator</span>
-            <span class="tag">Simulation</span>
-          </div>
-
-        </article>
-
-        <!-- 04 -->
-
-        <article class="project-card">
-
-          <span class="project-number">
-            04
-          </span>
-
-          <div class="project-icon">
-            ✦
-          </div>
-
-          <h3>
-            PARIL / Hanoi Tower
-          </h3>
-
-          <p>
-            Real-robot imitation learning experiments involving manipulation
-            tasks such as Hanoi Tower placement, with interest in
-            progress-aware learning and corrective interaction.
-          </p>
-
-          <div class="tags">
-            <span class="tag">Imitation Learning</span>
-            <span class="tag">Real Robot</span>
-            <span class="tag">Manipulation</span>
-          </div>
-
-        </article>
-
+        <div class="ground">
+          <div class="hill-back"></div>
+          <div class="hill-front"></div>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== ABOUT ===================== -->
-
-  <section id="about">
-
-    <div class="container about-grid">
-
-      <div class="about-art">
-
-        <div class="planet-ring"></div>
-        <div class="planet-core"></div>
-
-        <div
-          class="about-sparkle"
-          style="top: 50px; left: 55px;"
-        >
-          ✦
-        </div>
-
-        <div
-          class="about-sparkle"
-          style="right: 58px; top: 105px; font-size: 1rem;"
-        >
-          ✧
-        </div>
-
-        <div
-          class="about-sparkle"
-          style="left: 90px; bottom: 70px; font-size: 1.4rem;"
-        >
-          ✦
-        </div>
-
-      </div>
-
-      <div class="about-copy">
-
-        <div class="section-kicker">
-          About
-        </div>
-
-        <h2>
-          Between algorithms
-          and the physical world.
-        </h2>
-
-        <p>
-          I am an Artificial Intelligence student with a journalism
-          minor. My work moves between robotics, agents, image generation,
-          computer vision and embodied intelligence.
-          <br><br>
-          I am especially interested in systems that allow robots to
-          understand objects, reason about the physical world and interact
-          naturally with people.
-          Outside robotics, I enjoy photography, visual design and exploring
-          how technology can become more expressive and beautiful.
-        </p>
-
-        <div class="facts">
-
-          <div class="fact">
-            <strong>
-              Artificial Intelligence
-            </strong>
-            <span>
-              Major
-            </span>
-          </div>
-
-          <div class="fact">
-            <strong>
-              Journalism
-            </strong>
-            <span>
-              Minor
-            </span>
-          </div>
-
-          <div class="fact">
-            <strong>
-              Robotics
-            </strong>
-            <span>
-              Perception & manipulation
-            </span>
-          </div>
-
-          <div class="fact">
-            <strong>
-              Visual Culture
-            </strong>
-            <span>
-              Photography & image generation
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ===================== RESEARCH ===================== -->
-
-  <section id="research">
-
-    <div class="container">
-
-      <div class="section-header">
-
-        <div>
-          <div class="section-kicker">
-            Research Focus
-          </div>
-
-          <h2>
-            What I care about.
-          </h2>
-        </div>
-
-        <p class="section-description">
-          My current work sits at the intersection of
-          robot perception, simulation, learning and interaction.
-        </p>
-
-      </div>
-
-      <div class="research-grid">
-
-        <div class="research-item">
-
-          <div class="symbol">
-            ◉
-          </div>
-
-          <h3>
-            Robot Perception
-          </h3>
-
-          <p>
-            Understanding objects and scenes from RGB-D,
-            depth and point-cloud observations.
-          </p>
-
-        </div>
-
-        <div class="research-item">
-
-          <div class="symbol">
-            ⬡
-          </div>
-
-          <h3>
-            6D Pose
-          </h3>
-
-          <p>
-            Estimating object pose and geometric structure for
-            manipulation and grasping.
-          </p>
-
-        </div>
-
-        <div class="research-item">
-
-          <div class="symbol">
-            ✦
-          </div>
-
-          <h3>
-            Embodied AI
-          </h3>
-
-          <p>
-            Learning intelligent policies grounded in
-            physical interaction.
-          </p>
-
-        </div>
-
-        <div class="research-item">
-
-          <div class="symbol">
-            ♢
-          </div>
-
-          <h3>
-            Human-Robot Interaction
-          </h3>
-
-          <p>
-            Natural robot interaction through language,
-            vision and multimodal interfaces.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ===================== CONTACT ===================== -->
-
-  <section id="contact">
-
-    <div class="container">
-
-      <div class="contact-card">
-
-        <div class="section-kicker">
-          Contact
-        </div>
-
-        <h2>
-          Somewhere between
-          robots and stardust.
-        </h2>
-
-        <p>
-          I am always interested in robotics, embodied intelligence,
-          synthetic data, visual research and creative technology.
-        </p>
-
-        <div class="contact-buttons">
-
-          <a
-            class="button primary"
-            href="https://github.com/Rosemachinegun"
-            target="_blank"
-          >
-            GitHub
-          </a>
-
-          <a
-            class="button"
-            href="mailto:YOUR_EMAIL@example.com"
-          >
-            Email
-          </a>
-
-          <a
-            class="button"
-            href="cv.pdf"
-            target="_blank"
-          >
-            CV
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ===================== FOOTER ===================== -->
-
-  <footer>
-
-    <div class="container footer-row">
-
-      <span>
-        ✦ Rosy Qin
-      </span>
-
-      <span>
-        AI · Robotics · Embodied Intelligence
-      </span>
-
-      <span>
-        © <span id="year"></span>
-      </span>
-
-    </div>
-
-  </footer>
+    </section>
+  </div>
 
   <script>
+    // ===== Twinkling background stars =====
+    const starField = document.getElementById("starField");
+    const shootingField = document.getElementById("shootingField");
+    const body = document.body;
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    function createStars(count = 95) {
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement("div");
+        s.classList.add("star");
 
+        // some larger / cross stars
+        if (Math.random() > 0.82) s.classList.add("big");
+        if (Math.random() > 0.76) s.classList.add("cross");
+
+        s.style.left = Math.random() * 100 + "%";
+        s.style.top = Math.random() * 78 + "%";
+
+        const duration = 2.6 + Math.random() * 5.2;
+        const delay = Math.random() * 6;
+        s.style.animationDuration = duration + "s";
+        s.style.animationDelay = delay + "s";
+        s.style.opacity = 0.2 + Math.random() * 0.75;
+
+        starField.appendChild(s);
+      }
+    }
+
+    createStars(110);
+
+    // ===== Shooting stars =====
+    function createShootingStar(left, top, delay) {
+      const ss = document.createElement("div");
+      ss.classList.add("shooting-star");
+      ss.style.left = left + "%";
+      ss.style.top = top + "%";
+      ss.style.animationDelay = delay + "s";
+      shootingField.appendChild(ss);
+    }
+
+    createShootingStar(88, 16, 0.3);
+    createShootingStar(76, 10, 2.4);
+    createShootingStar(92, 26, 4.8);
+
+    // ===== Cursor magic particles =====
+    let lastTime = 0;
+    document.addEventListener("mousemove", (e) => {
+      const now = Date.now();
+      if (now - lastTime < 28) return;
+      lastTime = now;
+
+      for (let i = 0; i < 2; i++) {
+        const p = document.createElement("div");
+        p.className = "cursor-particle";
+        p.style.left = e.clientX + (Math.random() * 12 - 6) + "px";
+        p.style.top = e.clientY + (Math.random() * 12 - 6) + "px";
+        p.style.setProperty("--dx", (Math.random() * 60 - 30) + "px");
+        p.style.setProperty("--dy", (Math.random() * 60 - 30) + "px");
+        body.appendChild(p);
+        setTimeout(() => p.remove(), 1000);
+      }
+    });
+
+    // ===== occasional sparkle bursts =====
+    setInterval(() => {
+      const p = document.createElement("div");
+      p.className = "cursor-particle";
+      p.style.left = (window.innerWidth * (0.2 + Math.random() * 0.6)) + "px";
+      p.style.top = (window.innerHeight * (0.18 + Math.random() * 0.45)) + "px";
+      p.style.setProperty("--dx", (Math.random() * 40 - 20) + "px");
+      p.style.setProperty("--dy", (Math.random() * 40 - 20) + "px");
+      p.style.width = "10px";
+      p.style.height = "10px";
+      body.appendChild(p);
+      setTimeout(() => p.remove(), 1000);
+    }, 850);
   </script>
-
 </body>
 </html>
