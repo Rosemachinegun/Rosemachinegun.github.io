@@ -1,0 +1,5379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Qin Yuyang — Artificial Intelligence, Robotics, 6D Pose, Synthetic Data and Embodied Intelligence."
+  />
+
+  <title>Qin Yuyang | Robotics & Embodied Intelligence</title>
+
+  <style>
+    /* =========================================================
+       QIN YUYANG
+       Fairytale Night Portfolio
+       ========================================================= */
+
+    :root {
+      --night-0: #070d1c;
+      --night-1: #0d1830;
+      --night-2: #182a50;
+      --night-3: #31466f;
+
+      --cream: #fff9e9;
+      --cream-soft: #eee4cf;
+
+      --gold: #e4c477;
+      --gold-light: #f6e6ae;
+      --gold-faint: rgba(232, 204, 133, 0.22);
+
+      --blue-soft: #9aacc9;
+      --blue-pale: #ced8e8;
+
+      --pink: #c7a1ba;
+      --purple: #8f88b5;
+
+      --text: #fff9ec;
+      --text-soft: rgba(255, 249, 236, 0.76);
+      --text-faint: rgba(255, 249, 236, 0.52);
+
+      --line: rgba(246, 230, 174, 0.22);
+      --line-soft: rgba(255,255,255,0.11);
+
+      --shadow:
+        0 26px 70px rgba(3, 7, 18, 0.30);
+
+      --page:
+        min(1180px, calc(100% - 48px));
+    }
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+
+      color: var(--text);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      background:
+        linear-gradient(
+          180deg,
+          var(--night-0) 0%,
+          var(--night-1) 18%,
+          #142444 42%,
+          #1b2b4e 65%,
+          #101a31 84%,
+          #070d1c 100%
+        );
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: rgba(246, 230, 174, 0.27);
+      color: white;
+    }
+
+    /* =========================================================
+       FIXED FAIRYTALE BACKGROUND
+       ========================================================= */
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+
+      z-index: 0;
+
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .sky {
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 15% 14%,
+          rgba(120, 143, 188, 0.13),
+          transparent 24%
+        ),
+        radial-gradient(
+          circle at 78% 8%,
+          rgba(255, 235, 174, 0.06),
+          transparent 21%
+        ),
+        radial-gradient(
+          circle at 50% 40%,
+          rgba(113, 118, 170, 0.07),
+          transparent 35%
+        );
+    }
+
+    .paper-texture {
+      position: absolute;
+      inset: 0;
+
+      opacity: 0.12;
+
+      background-image:
+        repeating-radial-gradient(
+          circle at 0 0,
+          rgba(255,255,255,0.12) 0,
+          rgba(255,255,255,0.12) 0.5px,
+          transparent 0.7px,
+          transparent 4px
+        );
+
+      mix-blend-mode: soft-light;
+    }
+
+    /* =========================================================
+       MOON
+       ========================================================= */
+
+    .moon-wrap {
+      position: absolute;
+
+      top: 88px;
+      right: 7vw;
+
+      width: 180px;
+      height: 180px;
+    }
+
+    .moon-glow {
+      position: absolute;
+
+      inset: -90px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 239, 181, 0.17),
+          rgba(255, 239, 181, 0.07) 36%,
+          transparent 70%
+        );
+
+      filter: blur(8px);
+
+      animation:
+        moon-breathe 9s ease-in-out infinite;
+    }
+
+    .moon {
+      position: absolute;
+
+      inset: 20px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 34% 30%,
+          #fffdf0,
+          #fff3bd 45%,
+          #dac07a 100%
+        );
+
+      box-shadow:
+        0 0 32px rgba(255,239,177,0.24),
+        0 0 75px rgba(255,239,177,0.13);
+    }
+
+    .moon::after {
+      content: "";
+
+      position: absolute;
+
+      width: 132px;
+      height: 132px;
+
+      left: 38px;
+      top: -8px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          155deg,
+          #101d38,
+          #192b4e
+        );
+    }
+
+    @keyframes moon-breathe {
+      0%,
+      100% {
+        transform: scale(0.96);
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: scale(1.04);
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       STARS
+       ========================================================= */
+
+    .star-field,
+    .shooting-field,
+    .magic-field {
+      position: absolute;
+      inset: 0;
+    }
+
+    .star {
+      position: absolute;
+
+      width: 3px;
+      height: 3px;
+
+      border-radius: 50%;
+
+      background: #fff9dd;
+
+      box-shadow:
+        0 0 6px rgba(255,255,255,0.95),
+        0 0 14px rgba(255,231,165,0.62);
+
+      opacity: 0.22;
+
+      animation:
+        twinkle linear infinite;
+    }
+
+    .star.big {
+      width: 5px;
+      height: 5px;
+
+      background: var(--gold-light);
+
+      box-shadow:
+        0 0 9px rgba(255,247,207,0.98),
+        0 0 22px rgba(255,224,137,0.75);
+    }
+
+    .star.cross::before,
+    .star.cross::after {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255, 242, 194, 0.92);
+    }
+
+    .star.cross::before {
+      width: 1px;
+      height: 15px;
+    }
+
+    .star.cross::after {
+      width: 15px;
+      height: 1px;
+    }
+
+    @keyframes twinkle {
+      0%,
+      100% {
+        opacity: 0.15;
+        transform: scale(0.65);
+      }
+
+      48% {
+        opacity: 1;
+        transform: scale(1.35);
+      }
+
+      62% {
+        opacity: 0.68;
+      }
+    }
+
+    /* =========================================================
+       SHOOTING STAR
+       ========================================================= */
+
+    .shooting-star {
+      position: absolute;
+
+      width: 125px;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 242, 197, 0.9),
+          transparent
+        );
+
+      filter:
+        drop-shadow(
+          0 0 6px rgba(255,240,180,0.65)
+        );
+
+      opacity: 0;
+
+      animation:
+        shoot 8s linear infinite;
+    }
+
+    @keyframes shoot {
+      0%,
+      78% {
+        opacity: 0;
+        transform:
+          translate(0,0)
+          rotate(-27deg)
+          scaleX(0.2);
+      }
+
+      82% {
+        opacity: 0.9;
+      }
+
+      91% {
+        opacity: 0.7;
+
+        transform:
+          translate(-220px, 145px)
+          rotate(-27deg)
+          scaleX(1);
+      }
+
+      96%,
+      100% {
+        opacity: 0;
+
+        transform:
+          translate(-320px, 205px)
+          rotate(-27deg)
+          scaleX(0.8);
+      }
+    }
+
+    /* =========================================================
+       MIST
+       ========================================================= */
+
+    .mist {
+      position: absolute;
+
+      left: -15%;
+      width: 130%;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(228, 235, 246, 0.08),
+          transparent 69%
+        );
+
+      filter: blur(22px);
+
+      animation:
+        mist-drift 28s ease-in-out infinite alternate;
+    }
+
+    .mist.one {
+      bottom: 12vh;
+      opacity: 0.75;
+    }
+
+    .mist.two {
+      bottom: 31vh;
+      opacity: 0.36;
+
+      animation-duration: 38s;
+      animation-direction: alternate-reverse;
+    }
+
+    @keyframes mist-drift {
+      from {
+        transform:
+          translateX(-3%)
+          translateY(0);
+      }
+
+      to {
+        transform:
+          translateX(4%)
+          translateY(12px);
+      }
+    }
+
+
+    /* =========================================================
+       CURSOR FAIRY DUST
+       ========================================================= */
+
+    .cursor-particle {
+      position: fixed;
+
+      width: 7px;
+      height: 7px;
+
+      z-index: 2000;
+
+      pointer-events: none;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #fffde4 0%,
+          #f2d78d 48%,
+          rgba(242, 215, 141, 0) 74%
+        );
+
+      box-shadow:
+        0 0 8px rgba(255,235,171,0.73);
+
+      animation:
+        dust-out 1.25s forwards ease-out;
+    }
+
+    @keyframes dust-out {
+      from {
+        opacity: 1;
+
+        transform:
+          translate(0,0)
+          scale(1);
+      }
+
+      to {
+        opacity: 0;
+
+        transform:
+          translate(
+            var(--dx),
+            var(--dy)
+          )
+          scale(0.1);
+      }
+    }
+
+    /* =========================================================
+       PAGE
+       ========================================================= */
+
+    .page {
+      position: relative;
+      z-index: 10;
+    }
+
+    .container {
+      width: var(--page);
+      margin: 0 auto;
+    }
+
+    /* =========================================================
+       NAV
+       ========================================================= */
+
+    .nav-shell {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+      right: 0;
+
+      z-index: 1000;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(7,13,28,0.74),
+          rgba(7,13,28,0.34),
+          transparent
+        );
+
+      transition:
+        background 0.3s ease,
+        backdrop-filter 0.3s ease;
+    }
+
+    .nav-shell.scrolled {
+      background:
+        rgba(8, 14, 29, 0.76);
+
+      backdrop-filter:
+        blur(16px);
+
+      border-bottom:
+        1px solid rgba(246,230,174,0.08);
+    }
+
+    nav {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+
+      gap: 11px;
+
+      color: var(--cream);
+
+      font-size: 1.18rem;
+
+      letter-spacing: 0.035em;
+    }
+
+    .brand-star {
+      color: var(--gold-light);
+
+      text-shadow:
+        0 0 10px rgba(255,232,164,0.55);
+
+      animation:
+        brand-star 4.6s ease-in-out infinite;
+    }
+
+    @keyframes brand-star {
+      0%,
+      100% {
+        transform: rotate(0deg) scale(0.86);
+        opacity: 0.65;
+      }
+
+      50% {
+        transform: rotate(18deg) scale(1.16);
+        opacity: 1;
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+
+      list-style: none;
+    }
+
+    .nav-links a {
+      position: relative;
+
+      color: rgba(255,249,236,0.78);
+
+      font-size: 0.87rem;
+
+      letter-spacing: 0.035em;
+
+      transition:
+        color 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      bottom: -8px;
+
+      width: 0;
+      height: 1px;
+
+      transform:
+        translateX(-50%);
+
+      background:
+        var(--gold-light);
+
+      transition:
+        width 0.28s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 42px;
+      height: 42px;
+
+      border: 0;
+
+      color: white;
+      background: transparent;
+
+      cursor: pointer;
+
+      font-size: 1.2rem;
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      padding:
+        130px 0
+        85px;
+
+      position: relative;
+    }
+
+    .hero-grid {
+      width: 100%;
+      max-width: 1060px;
+
+      margin: 0 auto;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 0.88fr;
+
+      align-items: center;
+
+      gap: 64px;
+    }
+
+    .hero-copy {
+      padding-bottom: 12px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+
+      gap: 14px;
+
+      color: var(--gold-light);
+
+      font-size: 0.72rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.28em;
+
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      width: 40px;
+      height: 1px;
+
+      background:
+        var(--gold);
+    }
+
+    h1 {
+      max-width: 760px;
+
+      color: var(--cream);
+
+      font-weight: 400;
+
+      font-size:
+        clamp(4rem, 7.7vw, 7.8rem);
+
+      line-height: 0.91;
+
+      letter-spacing:
+        -0.057em;
+
+      text-shadow:
+        0 10px 35px rgba(0,0,0,0.16);
+    }
+
+    .hero-subtitle {
+      margin-top: 26px;
+
+      max-width: 610px;
+
+      color: var(--text-soft);
+
+      line-height: 1.9;
+
+      font-size: 1rem;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    .hero-subtitle strong {
+      font-weight: 400;
+      color: var(--cream);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 13px;
+
+      margin-top: 31px;
+    }
+
+    .button {
+      position: relative;
+
+      display: inline-flex;
+      align-items: center;
+
+      gap: 9px;
+
+      padding:
+        12px 20px;
+
+      border:
+        1px solid rgba(246,230,174,0.25);
+
+      border-radius: 999px;
+
+      color: var(--cream);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.84rem;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .button:hover {
+      transform:
+        translateY(-2px);
+
+      background:
+        rgba(255,255,255,0.09);
+
+      border-color:
+        rgba(246,230,174,0.55);
+    }
+
+    .button.primary {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(235,210,144,0.21),
+          rgba(210,172,89,0.12)
+        );
+
+      border-color:
+        rgba(246,230,174,0.45);
+    }
+
+    /* =========================================================
+       HERO STORYBOOK WINDOW
+       ========================================================= */
+
+    .storybook-window {
+      position: relative;
+
+      height: 500px;
+
+      overflow: hidden;
+
+      border:
+        1px solid rgba(246,230,174,0.20);
+
+      border-radius:
+        260px 260px 36px 36px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(112, 138, 179, 0.14),
+          rgba(42, 59, 95, 0.13)
+        );
+
+      box-shadow:
+        var(--shadow);
+
+      isolation: isolate;
+    }
+
+    .storybook-window::before {
+      content: "";
+
+      position: absolute;
+      inset: 16px;
+
+      border:
+        1px solid rgba(246,230,174,0.15);
+
+      border-radius:
+        240px 240px 26px 26px;
+    }
+
+    .storybook-window::after {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      top: 16px;
+      bottom: 94px;
+
+      width: 1px;
+
+      background:
+        rgba(246,230,174,0.13);
+    }
+
+    .storybook-moon {
+      position: absolute;
+
+      top: 75px;
+      right: 69px;
+
+      width: 78px;
+      height: 78px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #fff8cf,
+          #e8cd82
+        );
+
+      box-shadow:
+        0 0 30px rgba(248,223,153,0.18);
+    }
+
+    .storybook-moon::after {
+      content: "";
+
+      position: absolute;
+
+      width: 75px;
+      height: 75px;
+
+      top: -4px;
+      left: 22px;
+
+      border-radius: 50%;
+
+      background:
+        #192a4c;
+    }
+
+    .distant-mountains {
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 138px;
+
+      height: 210px;
+    }
+
+    .mountain {
+      position: absolute;
+
+      bottom: 0;
+
+      width: 0;
+      height: 0;
+
+      opacity: 0.48;
+
+      border-left:
+        150px solid transparent;
+
+      border-right:
+        150px solid transparent;
+
+      border-bottom:
+        230px solid #60789e;
+    }
+
+    .mountain.m1 {
+      left: -80px;
+    }
+
+    .mountain.m2 {
+      left: 145px;
+
+      opacity: 0.32;
+
+      transform: scale(0.82);
+
+      border-bottom-color:
+        #8192af;
+    }
+
+    .mountain.m3 {
+      right: -95px;
+
+      opacity: 0.33;
+
+      transform: scale(1.08);
+
+      border-bottom-color:
+        #526a92;
+    }
+
+    .castle {
+      position: absolute;
+
+      left: 50%;
+      bottom: 108px;
+
+      width: 240px;
+      height: 240px;
+
+      transform:
+        translateX(-50%);
+
+      filter:
+        drop-shadow(
+          0 12px 16px rgba(3,8,18,0.30)
+        );
+    }
+
+    .castle-body {
+      position: absolute;
+
+      left: 34px;
+      right: 25px;
+      bottom: 0;
+
+      height: 82px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #151f38,
+          #0b1326
+        );
+    }
+
+    .castle-tower {
+      position: absolute;
+
+      bottom: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          #182541,
+          #0c152a
+        );
+    }
+
+    .castle-tower::before {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      width: 0;
+      height: 0;
+
+      border-left:
+        24px solid transparent;
+
+      border-right:
+        24px solid transparent;
+
+      border-bottom:
+        45px solid #293a5d;
+    }
+
+    .castle-tower.t1 {
+      left: 12px;
+      width: 38px;
+      height: 120px;
+    }
+
+    .castle-tower.t1::before {
+      top: -45px;
+    }
+
+    .castle-tower.t2 {
+      left: 81px;
+      width: 55px;
+      height: 185px;
+    }
+
+    .castle-tower.t2::before {
+      top: -52px;
+
+      border-left-width: 31px;
+      border-right-width: 31px;
+      border-bottom-width: 52px;
+    }
+
+    .castle-tower.t3 {
+      right: 14px;
+      width: 42px;
+      height: 134px;
+    }
+
+    .castle-tower.t3::before {
+      top: -45px;
+    }
+
+    .castle-window {
+      position: absolute;
+
+      width: 8px;
+      height: 15px;
+
+      border-radius:
+        5px 5px 2px 2px;
+
+      background:
+        #ecd695;
+
+      box-shadow:
+        0 0 10px rgba(244,219,146,0.42);
+    }
+
+    .castle-window.w1 {
+      left: 27px;
+      bottom: 74px;
+    }
+
+    .castle-window.w2 {
+      left: 105px;
+      bottom: 112px;
+    }
+
+    .castle-window.w3 {
+      right: 31px;
+      bottom: 82px;
+    }
+
+    .hill-back,
+    .hill-front {
+      position: absolute;
+
+      left: -10%;
+      width: 120%;
+
+      border-radius:
+        50% 50% 0 0;
+    }
+
+    .hill-back {
+      bottom: 53px;
+      height: 145px;
+
+      background:
+        #1c2c50;
+    }
+
+    .hill-front {
+      bottom: 0;
+      height: 132px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #111d37,
+          #091221
+        );
+    }
+
+    /* =========================================================
+       GOLDEN MAGIC TRAIL
+       ========================================================= */
+
+    .magic-curve {
+      position: absolute;
+
+      left: 7%;
+      right: 7%;
+      bottom: 72px;
+
+      height: 150px;
+
+      z-index: 8;
+    }
+
+    .magic-curve svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .magic-path {
+      fill: none;
+
+      stroke:
+        rgba(246, 222, 150, 0.87);
+
+      stroke-width: 1.5;
+
+      stroke-linecap: round;
+
+      stroke-dasharray:
+        2 9;
+
+      filter:
+        drop-shadow(
+          0 0 5px rgba(255,225,149,0.62)
+        );
+
+      animation:
+        magic-dash 13s linear infinite;
+    }
+
+    @keyframes magic-dash {
+      to {
+        stroke-dashoffset: -160;
+      }
+    }
+
+    .window-spark {
+      position: absolute;
+
+      z-index: 9;
+
+      color: var(--gold-light);
+
+      text-shadow:
+        0 0 12px rgba(255,231,161,0.72);
+
+      animation:
+        spark-pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes spark-pulse {
+      0%,
+      100% {
+        opacity: 0.28;
+        transform: scale(0.78);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.16);
+      }
+    }
+
+    .scroll-whisper {
+      position: absolute;
+
+      left: 50%;
+      bottom: 29px;
+
+      transform:
+        translateX(-50%);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      gap: 10px;
+
+      color:
+        rgba(255,249,236,0.53);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+
+      font-size: 0.61rem;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 37px;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(246,230,174,0.65),
+          transparent
+        );
+
+      animation:
+        scroll-line 2.2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-line {
+      0%,
+      100% {
+        transform: scaleY(0.65);
+        opacity: 0.45;
+      }
+
+      50% {
+        transform: scaleY(1.1);
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       GENERAL SECTIONS
+       ========================================================= */
+
+    .section {
+      position: relative;
+
+      padding:
+        130px 0;
+    }
+
+    .section-heading {
+      display: grid;
+
+      grid-template-columns:
+        1fr 0.85fr;
+
+      gap: 70px;
+
+      align-items: end;
+
+      margin-bottom: 58px;
+    }
+
+    .chapter {
+      display: block;
+
+      margin-bottom: 14px;
+
+      color: var(--gold);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.66rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.27em;
+    }
+
+    .section-title {
+      color: var(--cream);
+
+      font-size:
+        clamp(2.6rem, 5vw, 5rem);
+
+      line-height: 1;
+
+      font-weight: 400;
+
+      letter-spacing:
+        -0.04em;
+    }
+
+    .section-lead {
+      color: var(--text-soft);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.91rem;
+
+      line-height: 1.9;
+
+      max-width: 520px;
+    }
+
+    .ornament-divider {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom: 70px;
+
+      color: var(--gold);
+    }
+
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: "";
+
+      height: 1px;
+
+      flex: 1;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(246,230,174,0.25),
+          transparent
+        );
+    }
+
+    /* =========================================================
+       SELECTED WORK
+       ========================================================= */
+
+    #projects {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.008),
+          rgba(120,138,180,0.035),
+          rgba(255,255,255,0)
+        );
+    }
+
+    .project-wall {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap:
+        66px 32px;
+    }
+
+    .project {
+      position: relative;
+    }
+
+    .project:nth-child(even) {
+      transform:
+        translateY(72px);
+    }
+
+    .project-image {
+      position: relative;
+
+      overflow: hidden;
+
+      aspect-ratio:
+        4 / 3;
+
+      border-radius:
+        7px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border:
+        1px solid rgba(246,230,174,0.13);
+
+      box-shadow:
+        0 22px 55px rgba(3,7,18,0.22);
+    }
+
+    .project-image::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 239, 196, 0.02),
+          transparent 45%,
+          rgba(8, 14, 28, 0.17)
+        );
+
+      box-shadow:
+        inset 0 0 45px rgba(9,16,30,0.18);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      filter:
+        saturate(0.88)
+        contrast(0.96)
+        brightness(0.92);
+
+      transition:
+        transform 1s cubic-bezier(.2,.7,.2,1),
+        filter 0.8s ease;
+    }
+
+    .project:hover .project-image img {
+      transform:
+        scale(1.025);
+
+      filter:
+        saturate(0.96)
+        contrast(0.98)
+        brightness(0.98);
+    }
+
+    .project-magic {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 5;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 0.5s ease;
+    }
+
+    .project:hover .project-magic {
+      opacity: 1;
+    }
+
+    .project-magic span {
+      position: absolute;
+
+      color: var(--gold-light);
+
+      text-shadow:
+        0 0 12px rgba(255,228,157,0.72);
+
+      animation:
+        project-spark 3.5s ease-in-out infinite;
+    }
+
+    @keyframes project-spark {
+      0%,
+      100% {
+        opacity: 0.15;
+        transform:
+          translateY(3px)
+          scale(0.8);
+      }
+
+      50% {
+        opacity: 0.95;
+        transform:
+          translateY(-4px)
+          scale(1.12);
+      }
+    }
+
+    .project-info {
+      padding:
+        21px 4px 0;
+    }
+
+    .project-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 20px;
+
+      margin-bottom: 8px;
+    }
+
+    .project-number {
+      color: var(--gold);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.66rem;
+
+      letter-spacing: 0.21em;
+    }
+
+    .project-year {
+      color: var(--text-faint);
+
+      font-size: 0.72rem;
+
+      font-family:
+        Arial,
+        sans-serif;
+    }
+
+    .project h3 {
+      color: var(--cream);
+
+      font-size:
+        clamp(1.5rem, 2.1vw, 2rem);
+
+      font-weight: 400;
+
+      margin-bottom: 11px;
+    }
+
+    .project-description {
+      color: var(--text-soft);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.86rem;
+
+      line-height: 1.85;
+
+      max-width: 94%;
+
+      margin-bottom: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap:
+        7px 15px;
+    }
+
+    .tags span {
+      color:
+        rgba(246,230,174,0.76);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.69rem;
+
+      letter-spacing: 0.035em;
+    }
+
+    .projects-note {
+      margin-top: 145px;
+
+      max-width: 610px;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      text-align: center;
+
+      color: var(--text-faint);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.76rem;
+
+      line-height: 1.8;
+    }
+
+    /* =========================================================
+       RESEARCH CONSTELLATIONS
+       ========================================================= */
+
+    #research {
+      position: relative;
+
+      overflow: hidden;
+    }
+
+    #research::before {
+      content: "";
+
+      position: absolute;
+
+      width: 520px;
+      height: 520px;
+
+      left: -240px;
+      top: 200px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(125,132,180,0.10),
+          transparent 68%
+        );
+    }
+
+    .constellation-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 18px;
+    }
+
+    .constellation {
+      min-height: 335px;
+
+      position: relative;
+
+      padding:
+        32px 25px;
+
+      border-top:
+        1px solid rgba(246,230,174,0.19);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.025),
+          transparent
+        );
+
+      overflow: hidden;
+
+      transition:
+        border-color 0.4s ease;
+    }
+
+    .constellation:hover {
+      border-top-color:
+        rgba(246,230,174,0.58);
+    }
+
+    .constellation-sky {
+      height: 115px;
+
+      position: relative;
+
+      margin-bottom: 28px;
+    }
+
+    .constellation-point {
+      position: absolute;
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        var(--gold-light);
+
+      box-shadow:
+        0 0 11px rgba(255,225,145,0.68);
+    }
+
+    .constellation-line {
+      position: absolute;
+
+      height: 1px;
+
+      transform-origin:
+        left center;
+
+      background:
+        rgba(246,230,174,0.30);
+
+      transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
+    }
+
+    .constellation:hover
+    .constellation-line {
+      background:
+        rgba(246,230,174,0.68);
+
+      box-shadow:
+        0 0 7px rgba(255,225,145,0.2);
+    }
+
+    .constellation-index {
+      color: var(--gold);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.64rem;
+
+      letter-spacing: 0.20em;
+    }
+
+    .constellation h3 {
+      margin:
+        11px 0 12px;
+
+      color: var(--cream);
+
+      font-size: 1.18rem;
+
+      font-weight: 400;
+    }
+
+    .constellation p {
+      color: var(--text-soft);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.79rem;
+
+      line-height: 1.75;
+    }
+
+    /* =========================================================
+       NOTES
+       ========================================================= */
+
+    #notes {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(135,118,163,0.025),
+          rgba(255,255,255,0.015)
+        );
+    }
+
+    .notes-list {
+      border-top:
+        1px solid var(--line-soft);
+    }
+
+    .note-item {
+      display: grid;
+
+      grid-template-columns:
+        80px 1fr auto;
+
+      gap: 28px;
+
+      align-items: center;
+
+      padding:
+        29px 8px;
+
+      border-bottom:
+        1px solid var(--line-soft);
+
+      transition:
+        padding-left 0.35s ease,
+        background 0.35s ease;
+    }
+
+    .note-item:hover {
+      padding-left: 18px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(246,230,174,0.035),
+          transparent
+        );
+    }
+
+    .note-number {
+      color: var(--gold);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.66rem;
+
+      letter-spacing: 0.2em;
+    }
+
+    .note-main h3 {
+      color: var(--cream);
+
+      font-weight: 400;
+
+      font-size:
+        clamp(1.1rem, 1.8vw, 1.5rem);
+
+      margin-bottom: 7px;
+    }
+
+    .note-main p {
+      color: var(--text-faint);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.75rem;
+
+      line-height: 1.6;
+    }
+
+    .note-arrow {
+      color: var(--gold-light);
+
+      font-size: 1.25rem;
+
+      transition:
+        transform 0.3s ease;
+    }
+
+    .note-item:hover
+    .note-arrow {
+      transform:
+        translate(4px, -4px);
+    }
+
+    .note-coming {
+      color:
+        rgba(255,249,236,0.32);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.64rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.14em;
+    }
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns:
+        0.8fr 1.2fr;
+
+      gap: 90px;
+
+      align-items: center;
+    }
+
+    .about-art {
+      position: relative;
+
+      min-height: 490px;
+
+      overflow: hidden;
+
+      border-radius:
+        220px 220px 8px 8px;
+
+      border:
+        1px solid rgba(246,230,174,0.15);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(93,115,158,0.16),
+          rgba(30,43,75,0.13)
+        );
+    }
+
+    .about-orbit {
+      position: absolute;
+
+      left: 50%;
+      top: 45%;
+
+      width: 220px;
+      height: 220px;
+
+      transform:
+        translate(-50%,-50%);
+
+      border:
+        1px solid rgba(246,230,174,0.36);
+
+      border-radius: 50%;
+    }
+
+    .about-orbit::before {
+      content: "";
+
+      position: absolute;
+
+      left: -65px;
+      top: 100px;
+
+      width: 350px;
+      height: 45px;
+
+      border:
+        1px solid rgba(246,230,174,0.31);
+
+      border-radius: 50%;
+
+      transform:
+        rotate(-17deg);
+    }
+
+    .about-world {
+      position: absolute;
+
+      left: 50%;
+      top: 45%;
+
+      width: 112px;
+      height: 112px;
+
+      transform:
+        translate(-50%,-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 31% 27%,
+          #e1e4e2,
+          #7184a7 52%,
+          #334868 100%
+        );
+
+      box-shadow:
+        0 0 40px rgba(174,197,225,0.15);
+    }
+
+    .vine {
+      position: absolute;
+
+      width: 180px;
+      height: 250px;
+
+      opacity: 0.56;
+    }
+
+    .vine.left {
+      left: -28px;
+      bottom: -34px;
+
+      border-left:
+        1px solid rgba(192,181,143,0.44);
+
+      border-radius:
+        80% 0 0 0;
+
+      transform:
+        rotate(15deg);
+    }
+
+    .vine.right {
+      right: -15px;
+      top: 10px;
+
+      border-right:
+        1px solid rgba(192,181,143,0.42);
+
+      border-radius:
+        0 80% 0 0;
+
+      transform:
+        rotate(-12deg);
+    }
+
+    .about-copy h2 {
+      color: var(--cream);
+
+      font-size:
+        clamp(2.8rem, 5vw, 5.2rem);
+
+      line-height: 1.03;
+
+      font-weight: 400;
+
+      letter-spacing:
+        -0.045em;
+    }
+
+    .about-copy > p {
+      margin:
+        24px 0 33px;
+
+      max-width: 650px;
+
+      color: var(--text-soft);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.89rem;
+
+      line-height: 1.95;
+    }
+
+    .about-facts {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap:
+        20px 36px;
+    }
+
+    .about-fact {
+      padding-top: 15px;
+
+      border-top:
+        1px solid rgba(246,230,174,0.16);
+    }
+
+    .about-fact strong {
+      display: block;
+
+      color: var(--cream);
+
+      font-weight: 400;
+
+      margin-bottom: 6px;
+
+      font-size: 0.96rem;
+    }
+
+    .about-fact span {
+      color: var(--text-faint);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.73rem;
+
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       CONTACT / FOOTER
+       ========================================================= */
+
+    .contact {
+      text-align: center;
+
+      padding:
+        150px 0 90px;
+    }
+
+    .contact-star {
+      display: block;
+
+      margin-bottom: 25px;
+
+      color: var(--gold-light);
+
+      font-size: 1.5rem;
+
+      text-shadow:
+        0 0 20px rgba(255,227,150,0.5);
+    }
+
+    .contact h2 {
+      color: var(--cream);
+
+      font-size:
+        clamp(2.7rem, 6vw, 6rem);
+
+      line-height: 0.98;
+
+      font-weight: 400;
+
+      letter-spacing:
+        -0.05em;
+    }
+
+    .contact p {
+      max-width: 560px;
+
+      margin:
+        26px auto 30px;
+
+      color: var(--text-soft);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.86rem;
+
+      line-height: 1.9;
+    }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+    footer {
+      position: relative;
+
+      padding:
+        34px 0;
+
+      border-top:
+        1px solid rgba(246,230,174,0.09);
+    }
+
+    .footer-row {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 24px;
+
+      color: rgba(255,249,236,0.44);
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.69rem;
+    }
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform:
+        translateY(34px);
+
+      transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.2,.65,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 980px) {
+
+      .hero-grid,
+      .section-heading,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 55px;
+      }
+
+      .section-heading {
+        gap: 20px;
+      }
+
+      .storybook-window {
+        height: 500px;
+      }
+
+      .constellation-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .about-grid {
+        gap: 55px;
+      }
+
+      .about-art {
+        max-width: 550px;
+        width: 100%;
+
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+
+      :root {
+        --page:
+          min(100% - 28px, 1180px);
+      }
+
+      .nav-links {
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 999;
+
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 30px;
+
+        background:
+          rgba(7,13,28,0.96);
+
+        backdrop-filter:
+          blur(18px);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
+      }
+
+      body.menu-open
+      .nav-links {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-links a {
+        font-size: 1.25rem;
+      }
+
+      .menu-button {
+        position: relative;
+
+        z-index: 1000;
+
+        display: block;
+      }
+
+      .hero {
+        padding:
+          120px 0 90px;
+      }
+
+      h1 {
+        font-size:
+          clamp(3.8rem, 17vw, 6rem);
+      }
+
+      .storybook-window {
+        height: 430px;
+
+        border-radius:
+          200px 200px 28px 28px;
+      }
+
+      .moon-wrap {
+        right: -15px;
+
+        width: 135px;
+        height: 135px;
+      }
+
+      .section {
+        padding:
+          95px 0;
+      }
+
+      .project-wall {
+        grid-template-columns: 1fr;
+
+        gap: 54px;
+      }
+
+      .project:nth-child(even) {
+        transform: none;
+      }
+
+      .projects-note {
+        margin-top: 65px;
+      }
+
+      .constellation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .note-item {
+        grid-template-columns:
+          45px 1fr auto;
+
+        gap: 15px;
+
+        padding:
+          24px 4px;
+      }
+
+      .about-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-row {
+        flex-direction: column;
+
+        text-align: center;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+      }
+    }
+
+    /* =========================================================
+       CLASSIC HAND-DRAWN FAIRYTALE PASS · 2026-09-30
+       Small visual refinement only: layout and content preserved.
+       ========================================================= */
+
+    :root {
+      --night-0: #07101f;
+      --night-1: #102343;
+      --night-2: #1c375d;
+      --night-3: #53698f;
+      --cream: #fff8e7;
+      --cream-soft: #eadfc9;
+      --gold: #d9bf7c;
+      --gold-light: #f6e6b0;
+      --blue-soft: #93a9c8;
+      --blue-pale: #c8d7e8;
+      --pink: #c9a7bc;
+      --purple: #8b80ad;
+      --page: min(1120px, calc(100% - 64px));
+    }
+
+    body {
+      background:
+        radial-gradient(
+          ellipse at 52% -7%,
+          rgba(83, 116, 158, 0.31),
+          transparent 38%
+        ),
+        linear-gradient(
+          180deg,
+          #06101f 0%,
+          #0d2140 18%,
+          #17375b 43%,
+          #1a3153 64%,
+          #101f3a 83%,
+          #07101f 100%
+        );
+    }
+
+    .ambient::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          108deg,
+          transparent 0 12%,
+          rgba(139, 160, 194, 0.035) 20%,
+          transparent 31% 61%,
+          rgba(193, 170, 194, 0.028) 70%,
+          transparent 82%
+        );
+      opacity: 0.9;
+    }
+
+    .ambient::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow:
+        inset 0 0 150px rgba(1, 7, 19, 0.44),
+        inset 0 -80px 120px rgba(5, 12, 28, 0.24);
+    }
+
+    .sky {
+      background:
+        radial-gradient(
+          ellipse at 38% 16%,
+          rgba(117, 151, 190, 0.16),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 79% 11%,
+          rgba(255, 237, 184, 0.08),
+          transparent 20%
+        ),
+        radial-gradient(
+          ellipse at 58% 46%,
+          rgba(128, 113, 165, 0.075),
+          transparent 38%
+        );
+    }
+
+    .sky::before,
+    .sky::after {
+      content: "";
+      position: absolute;
+      left: -8%;
+      width: 116%;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(18px);
+    }
+
+    .sky::before {
+      top: 24%;
+      height: 130px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(166, 188, 211, 0.055),
+          transparent 72%
+        );
+      transform: rotate(-2deg);
+    }
+
+    .sky::after {
+      top: 59%;
+      height: 170px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(189, 170, 196, 0.038),
+          transparent 72%
+        );
+      transform: rotate(2deg);
+    }
+
+    .paper-texture {
+      opacity: 0.17;
+      background-image:
+        repeating-radial-gradient(
+          circle at 0 0,
+          rgba(255,255,255,0.10) 0,
+          rgba(255,255,255,0.10) 0.45px,
+          transparent 0.65px,
+          transparent 4px
+        ),
+        repeating-linear-gradient(
+          17deg,
+          rgba(255,248,224,0.02) 0,
+          rgba(255,248,224,0.02) 1px,
+          transparent 1px,
+          transparent 6px
+        );
+      mix-blend-mode: soft-light;
+    }
+
+    .moon-wrap {
+      top: 82px;
+      right: 7.5vw;
+      width: 188px;
+      height: 188px;
+    }
+
+    .moon-glow {
+      inset: -105px;
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 240, 190, 0.20),
+          rgba(196, 216, 236, 0.075) 34%,
+          transparent 70%
+        );
+      filter: blur(11px);
+    }
+
+    .moon {
+      background:
+        radial-gradient(
+          circle at 34% 29%,
+          #fffdf0,
+          #fff2bf 46%,
+          #d7bf82 100%
+        );
+      box-shadow:
+        0 0 28px rgba(255, 238, 181, 0.24),
+        0 0 78px rgba(203, 221, 238, 0.11);
+    }
+
+    .star {
+      width: 2.5px;
+      height: 2.5px;
+      background: #fff9dd;
+      box-shadow:
+        0 0 5px rgba(255,255,255,0.88),
+        0 0 12px rgba(255,231,165,0.48);
+      opacity: 0.18;
+    }
+
+    .star.big {
+      width: 4.5px;
+      height: 4.5px;
+      box-shadow:
+        0 0 8px rgba(255,247,207,0.92),
+        0 0 18px rgba(255,224,137,0.60);
+    }
+
+    .shooting-star {
+      width: 112px;
+      opacity: 0;
+      filter: drop-shadow(0 0 5px rgba(255,240,180,0.48));
+    }
+
+    .mist {
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(214, 228, 241, 0.105),
+          transparent 69%
+        );
+      filter: blur(28px);
+    }
+
+    .mist.one {
+      opacity: 0.72;
+    }
+
+    .mist.two {
+      opacity: 0.30;
+    }
+
+    /* Soft storybook ribbon: a small amount of stardust travels as a group. */
+    .magic-ribbon {
+      position: absolute;
+      right: 4vw;
+      top: 31vh;
+      width: min(500px, 50vw);
+      height: 235px;
+      opacity: 0.64;
+      pointer-events: none;
+      transform: rotate(-4deg);
+    }
+
+    .magic-ribbon::before {
+      content: "";
+      position: absolute;
+      inset: 20px 6px 24px 14px;
+      border-top: 1px solid rgba(246, 224, 164, 0.11);
+      border-radius: 50%;
+      transform: rotate(-9deg);
+      filter: blur(0.2px);
+    }
+
+    .magic-mote {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #fff6cf;
+      box-shadow:
+        0 0 7px rgba(255, 242, 194, 0.90),
+        0 0 15px rgba(229, 194, 112, 0.42);
+      offset-path: path("M 18 180 C 115 94, 214 205, 308 118 C 373 57, 435 87, 486 33");
+      offset-rotate: 0deg;
+      animation: mote-pilgrimage 13s ease-in-out infinite;
+    }
+
+    .magic-mote:nth-child(2) {
+      width: 2px;
+      height: 2px;
+      animation-delay: -2.4s;
+      animation-duration: 14.5s;
+    }
+
+    .magic-mote:nth-child(3) {
+      width: 5px;
+      height: 5px;
+      animation-delay: -5.8s;
+      animation-duration: 16s;
+    }
+
+    .magic-mote:nth-child(4) {
+      width: 2.5px;
+      height: 2.5px;
+      animation-delay: -8.7s;
+      animation-duration: 15s;
+    }
+
+    .magic-mote:nth-child(5) {
+      width: 3px;
+      height: 3px;
+      animation-delay: -10.8s;
+      animation-duration: 17s;
+    }
+
+    @keyframes mote-pilgrimage {
+      0% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.55);
+      }
+      12% {
+        opacity: 0.82;
+      }
+      42% {
+        opacity: 0.48;
+        transform: scale(0.8);
+      }
+      68% {
+        opacity: 1;
+        transform: scale(1.12);
+      }
+      88% {
+        opacity: 0.62;
+      }
+      100% {
+        offset-distance: 100%;
+        opacity: 0;
+        transform: scale(0.45);
+      }
+    }
+
+    .cursor-particle {
+      width: 5px;
+      height: 5px;
+      background:
+        radial-gradient(
+          circle,
+          #fffce5 0%,
+          #f0d58c 45%,
+          rgba(242, 215, 141, 0) 76%
+        );
+      box-shadow: 0 0 7px rgba(255,235,171,0.58);
+      animation-duration: 1.55s;
+    }
+
+    .nav-shell.scrolled {
+      background: rgba(7, 16, 31, 0.82);
+      backdrop-filter: blur(9px);
+      border-bottom: 1px solid rgba(246,230,174,0.07);
+    }
+
+    .brand {
+      font-family: "Palatino Linotype", Palatino, Georgia, serif;
+      letter-spacing: 0.055em;
+    }
+
+    .hero-grid {
+      max-width: 1080px;
+      gap: 58px;
+    }
+
+    h1,
+    .section-title,
+    .about-copy h2,
+    .contact h2,
+    .project h3,
+    .constellation h3,
+    .note-main h3 {
+      font-family:
+        "Palatino Linotype",
+        "Book Antiqua",
+        Palatino,
+        Georgia,
+        serif;
+    }
+
+    h1 {
+      letter-spacing: -0.047em;
+      text-shadow:
+        0 10px 32px rgba(0,0,0,0.14),
+        0 0 32px rgba(204, 222, 238, 0.035);
+    }
+
+    .eyebrow,
+    .chapter {
+      color: #ead397;
+    }
+
+    .hero-subtitle,
+    .section-lead,
+    .project-description,
+    .constellation p,
+    .about-copy > p,
+    .contact p {
+      color: rgba(250, 246, 235, 0.72);
+    }
+
+    .button {
+      background: transparent;
+      border-color: rgba(235, 213, 153, 0.23);
+      box-shadow: none;
+    }
+
+    .button:hover {
+      background: rgba(239, 221, 172, 0.055);
+      border-color: rgba(246,230,174,0.46);
+    }
+
+    .button.primary {
+      background: rgba(225, 203, 143, 0.055);
+      border-color: rgba(246,230,174,0.34);
+    }
+
+    /* The existing hero frame stays in place, but behaves more like a painted cel. */
+    .storybook-window {
+      background:
+        radial-gradient(
+          circle at 66% 26%,
+          rgba(237, 225, 190, 0.075),
+          transparent 17%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(89, 129, 171, 0.22) 0%,
+          rgba(46, 78, 121, 0.18) 38%,
+          rgba(29, 50, 87, 0.23) 72%,
+          rgba(15, 27, 52, 0.28) 100%
+        );
+      border-color: rgba(238, 219, 164, 0.18);
+      box-shadow:
+        0 24px 62px rgba(3, 7, 18, 0.26),
+        inset 0 0 80px rgba(8, 18, 39, 0.14);
+    }
+
+    .storybook-window::before {
+      border-color: rgba(246,230,174,0.12);
+    }
+
+    .storybook-window::after {
+      opacity: 0.55;
+    }
+
+    .storybook-moon {
+      background:
+        radial-gradient(
+          circle at 42% 38%,
+          #fffbe0,
+          #e9d392 74%
+        );
+      box-shadow:
+        0 0 24px rgba(248,223,153,0.17),
+        0 0 54px rgba(186, 211, 233, 0.08);
+    }
+
+    .storybook-moon::after {
+      background: #1b355b;
+    }
+
+    .mountain {
+      opacity: 0.42;
+      border-bottom-color: #6883aa;
+    }
+
+    .mountain.m2 {
+      opacity: 0.27;
+      border-bottom-color: #90a1ba;
+    }
+
+    .mountain.m3 {
+      opacity: 0.29;
+      border-bottom-color: #5a759e;
+    }
+
+    .castle-body,
+    .castle-tower {
+      background:
+        linear-gradient(
+          180deg,
+          #1a2c4d,
+          #0c1830
+        );
+    }
+
+    .castle-tower::before {
+      border-bottom-color: #344a70;
+    }
+
+    .castle-window {
+      background: #f0dca0;
+      box-shadow: 0 0 9px rgba(244,219,146,0.35);
+    }
+
+    .hill-back {
+      background: #173358;
+    }
+
+    .hill-front {
+      background:
+        linear-gradient(
+          180deg,
+          #0e2444,
+          #08162b
+        );
+    }
+
+    .magic-path {
+      stroke: rgba(246, 224, 164, 0.76);
+      stroke-width: 1.25;
+      stroke-dasharray: 1.5 10;
+      filter: drop-shadow(0 0 4px rgba(255,225,149,0.48));
+    }
+
+    /* Flat cypress silhouettes borrowed from classic painted-background staging. */
+    .cypress-grove {
+      position: absolute;
+      bottom: 55px;
+      z-index: 7;
+      height: 330px;
+      width: 112px;
+      pointer-events: none;
+      opacity: 0.82;
+    }
+
+    .cypress-grove.left {
+      left: -22px;
+    }
+
+    .cypress-grove.right {
+      right: -30px;
+      transform: scaleX(-1);
+      opacity: 0.73;
+    }
+
+    .cypress {
+      position: absolute;
+      bottom: 0;
+      width: 25px;
+      height: var(--h, 250px);
+      left: var(--x, 0px);
+      border-radius: 58% 42% 34% 46% / 14% 16% 84% 86%;
+      background:
+        linear-gradient(
+          90deg,
+          #09162e 0%,
+          #10294b 52%,
+          #17365a 100%
+        );
+      transform: rotate(var(--r, 0deg));
+      transform-origin: bottom center;
+      box-shadow: inset -5px 0 0 rgba(92, 113, 153, 0.08);
+    }
+
+    .cypress::after {
+      content: "";
+      position: absolute;
+      left: 47%;
+      bottom: -25px;
+      width: 3px;
+      height: 52px;
+      background: #08142a;
+    }
+
+    /* Storybook pixies in the background: more painterly and character-like,
+       loosely inspired by classic animated fairies without copying a specific model. */
+    .pixie-field {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .pixie {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+      opacity: 0.94;
+      filter:
+        drop-shadow(0 0 12px rgba(246, 226, 167, 0.34))
+        drop-shadow(0 0 32px rgba(255, 228, 161, 0.12));
+      will-change: transform, opacity;
+    }
+
+    .pixie::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 238, 183, 0.26),
+          rgba(255, 238, 183, 0) 72%
+        );
+      filter: blur(6px);
+      opacity: 0.85;
+    }
+
+    .pixie svg {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .pixie .wing {
+      fill: rgba(210, 228, 236, 0.18);
+      stroke: rgba(250, 250, 245, 0.40);
+      stroke-width: 1.4;
+      transform-box: fill-box;
+      transform-origin: 50% 58%;
+    }
+
+    .pixie .wing-left {
+      animation: wing-flutter-left 0.72s ease-in-out infinite alternate;
+    }
+
+    .pixie .wing-right {
+      animation: wing-flutter-right 0.72s ease-in-out infinite alternate;
+    }
+
+    .pixie .pixie-face,
+    .pixie .pixie-arm,
+    .pixie .pixie-leg {
+      fill: none;
+      stroke: #f4ddb3;
+      stroke-width: 5.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pixie .pixie-head {
+      fill: #f4ddb3;
+    }
+
+    .pixie .pixie-hair,
+    .pixie .pixie-bun {
+      fill: #f5d26b;
+    }
+
+    .pixie .pixie-torso {
+      fill: #f2ddb4;
+    }
+
+    .pixie .pixie-dress {
+      fill: #d9d38b;
+    }
+
+    .pixie .pixie-slipper {
+      fill: #fff6dd;
+      filter: drop-shadow(0 0 4px rgba(255, 244, 212, 0.68));
+    }
+
+    .pixie .pixie-wand {
+      fill: none;
+      stroke: rgba(246, 230, 174, 0.86);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .pixie .wand-star,
+    .pixie .spark-dot {
+      fill: #f8ebb8;
+      filter: drop-shadow(0 0 5px rgba(255, 232, 170, 0.72));
+    }
+
+    .pixie .spark-dot {
+      animation: spark-pulse 2.6s ease-in-out infinite;
+    }
+
+    .pixie.one {
+      left: 66%;
+      top: 16%;
+      animation: pixie-flight-one 18s ease-in-out infinite;
+    }
+
+    .pixie.two {
+      left: 77%;
+      top: 40%;
+      width: 62px;
+      height: 62px;
+      opacity: 0.82;
+      animation: pixie-flight-two 20s ease-in-out infinite;
+    }
+
+    .pixie.three {
+      left: 9%;
+      top: 26%;
+      width: 56px;
+      height: 56px;
+      opacity: 0.52;
+      transform: scaleX(-1);
+      animation: pixie-flight-three 25s ease-in-out infinite;
+    }
+
+    @keyframes wing-flutter-left {
+      from { transform: rotate(-18deg) scale(0.96); }
+      to { transform: rotate(-37deg) scale(1.03); }
+    }
+
+    @keyframes wing-flutter-right {
+      from { transform: rotate(10deg) scale(0.97); }
+      to { transform: rotate(29deg) scale(1.03); }
+    }
+
+    @keyframes pixie-flight-one {
+      0%, 100% { transform: translate(0, 0) rotate(-8deg) scale(1); }
+      28% { transform: translate(28px, -12px) rotate(-2deg) scale(1.03); }
+      54% { transform: translate(8px, 22px) rotate(6deg) scale(0.98); }
+      76% { transform: translate(-24px, 10px) rotate(-10deg) scale(1.01); }
+    }
+
+    @keyframes pixie-flight-two {
+      0%, 100% { transform: translate(0, 0) rotate(10deg) scale(1); }
+      36% { transform: translate(-20px, -18px) rotate(0deg) scale(1.04); }
+      64% { transform: translate(14px, 12px) rotate(12deg) scale(0.96); }
+    }
+
+    @keyframes pixie-flight-three {
+      0%, 100% { transform: translate(0, 0) scaleX(-1) rotate(8deg); }
+      42% { transform: translate(24px, -14px) scaleX(-1) rotate(-2deg); }
+      74% { transform: translate(-10px, 14px) scaleX(-1) rotate(7deg); }
+    }
+
+      50% {
+        transform: translate(-5px, -7px) rotate(-7deg);
+      }
+    }
+
+    .project-image {
+      border-color: rgba(233, 213, 160, 0.11);
+      box-shadow: 0 20px 48px rgba(3,7,18,0.18);
+    }
+
+    .project-image img {
+      filter:
+        saturate(0.82)
+        contrast(0.94)
+        brightness(0.94)
+        sepia(0.025);
+    }
+
+    .project:hover .project-image img {
+      filter:
+        saturate(0.90)
+        contrast(0.97)
+        brightness(0.98)
+        sepia(0.01);
+    }
+
+    .constellation {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(214, 226, 238, 0.017),
+          transparent
+        );
+      border-top-color: rgba(236, 217, 164, 0.15);
+    }
+
+    .about-art {
+      background:
+        radial-gradient(
+          circle at 50% 36%,
+          rgba(195, 211, 226, 0.075),
+          transparent 36%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(81, 112, 155, 0.16),
+          rgba(31, 47, 80, 0.12)
+        );
+    }
+
+    .about-world {
+      background:
+        radial-gradient(
+          circle at 31% 27%,
+          #e4e4dd,
+          #7f93ae 52%,
+          #3a5174 100%
+        );
+      box-shadow: 0 0 40px rgba(174,197,225,0.12);
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --page: min(100% - 34px, 1120px);
+      }
+
+      .magic-ribbon {
+        right: -22vw;
+        top: 29vh;
+        width: 78vw;
+        opacity: 0.36;
+      }
+
+      .pixie.one {
+        left: 64%;
+        top: 21%;
+      }
+
+      .pixie.two {
+        left: 75%;
+        top: 44%;
+      }
+
+      .cypress-grove {
+        opacity: 0.63;
+      }
+    }
+
+
+    /* =========================================================
+       EXTRA FAIRY PASS · METEORS / FAIRY DUST / MINI FAIRIES
+       ========================================================= */
+
+    .shooting-star.soft {
+      height: 2px;
+      filter: drop-shadow(0 0 8px rgba(255,240,180,0.72));
+      animation-name: shoot-soft;
+    }
+
+    .shooting-star.long {
+      width: 165px;
+      filter: drop-shadow(0 0 10px rgba(255,240,180,0.84));
+    }
+
+    @keyframes shoot-soft {
+      0%, 74% {
+        opacity: 0;
+        transform: translate(0,0) rotate(-31deg) scaleX(0.18);
+      }
+      79% {
+        opacity: 0.95;
+      }
+      91% {
+        opacity: 0.68;
+        transform: translate(-175px, 114px) rotate(-31deg) scaleX(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-260px, 168px) rotate(-31deg) scaleX(0.72);
+      }
+    }
+
+    .ambient-mote {
+      position: absolute;
+      z-index: 4;
+      border-radius: 50%;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,250,230,0.98) 0%,
+          rgba(246,225,164,0.88) 42%,
+          rgba(246,225,164,0) 74%
+        );
+      box-shadow:
+        0 0 10px rgba(255,235,171,0.55),
+        0 0 22px rgba(246,225,164,0.18);
+      animation: ambient-mote-float var(--dur, 12s) linear forwards;
+      opacity: 0;
+    }
+
+    @keyframes ambient-mote-float {
+      0% {
+        opacity: 0;
+        transform: translate(0,0) scale(0.35);
+      }
+      16% {
+        opacity: 0.95;
+      }
+      70% {
+        opacity: 0.72;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--mx), var(--my)) scale(1.08);
+      }
+    }
+
+    .pixie::after {
+      content: "";
+      position: absolute;
+      right: -8px;
+      top: 36px;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(to right, rgba(246,230,174,0.72), transparent);
+      filter: blur(0.4px);
+      opacity: 0.85;
+      transform: rotate(-18deg);
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       FIXED FAIRYTALE ATMOSPHERE
+       ======================================================= -->
+
+  <div class="ambient">
+
+    <div class="sky"></div>
+
+    <div class="paper-texture"></div>
+
+    <div class="moon-wrap">
+      <div class="moon-glow"></div>
+      <div class="moon"></div>
+    </div>
+
+    <div
+      class="star-field"
+      id="starField"
+    ></div>
+
+    <div
+      class="shooting-field"
+      id="shootingField"
+    ></div>
+
+    <div
+      class="magic-field"
+      id="magicField"
+    ></div>
+
+    <div
+      class="pixie-field"
+      id="pixieField"
+    ></div>
+
+    <div class="mist one"></div>
+    <div class="mist two"></div>
+
+    <div class="magic-ribbon" aria-hidden="true">
+      <span class="magic-mote"></span>
+      <span class="magic-mote"></span>
+      <span class="magic-mote"></span>
+      <span class="magic-mote"></span>
+      <span class="magic-mote"></span>
+    </div>
+
+  </div>
+
+  <!-- =======================================================
+       NAVIGATION
+       ======================================================= -->
+
+  <header
+    class="nav-shell"
+    id="navShell"
+  >
+
+    <div class="container">
+
+      <nav>
+
+        <a
+          href="#home"
+          class="brand"
+        >
+          <span class="brand-star">✦</span>
+          <span>Qin Yuyang</span>
+        </a>
+
+        <ul
+          class="nav-links"
+          id="navLinks"
+        >
+          <li>
+            <a href="#home">
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="#projects">
+              Work
+            </a>
+          </li>
+
+          <li>
+            <a href="#research">
+              Research
+            </a>
+          </li>
+
+          <li>
+            <a href="#notes">
+              Notes
+            </a>
+          </li>
+
+          <li>
+            <a href="#about">
+              About
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://github.com/Rosemachinegun"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub ↗
+            </a>
+          </li>
+        </ul>
+
+        <button
+          class="menu-button"
+          id="menuButton"
+          aria-label="Open navigation menu"
+        >
+          ☰
+        </button>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- =======================================================
+       PAGE
+       ======================================================= -->
+
+  <main class="page">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section
+      class="hero"
+      id="home"
+    >
+
+      <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+          <div class="eyebrow">
+            Robotics · AI · Research
+          </div>
+
+          <h1>
+            Between
+            <br>
+            Moonlight
+            <br>
+            & Machines.
+          </h1>
+
+          <p class="hero-subtitle">
+            I am <strong>Qin Yuyang</strong>, an Artificial Intelligence
+            student exploring robotics, embodied intelligence,
+            6D pose estimation, synthetic data and
+            human-robot interaction.
+            <br><br>
+            I like building machines that can perceive,
+            understand and interact with the physical world.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              class="button primary"
+              href="#projects"
+            >
+              Enter the Story
+              <span>✦</span>
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/Rosemachinegun"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+              <span>↗</span>
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Fairytale window -->
+
+        <div class="storybook-window">
+
+          <div class="storybook-moon"></div>
+
+          <div class="cypress-grove left" aria-hidden="true">
+            <span class="cypress" style="--x: 3px; --h: 305px; --r: -2deg;"></span>
+            <span class="cypress" style="--x: 34px; --h: 245px; --r: 1deg;"></span>
+            <span class="cypress" style="--x: 65px; --h: 282px; --r: -1deg;"></span>
+          </div>
+
+          <div class="cypress-grove right" aria-hidden="true">
+            <span class="cypress" style="--x: 3px; --h: 298px; --r: -2deg;"></span>
+            <span class="cypress" style="--x: 34px; --h: 238px; --r: 1deg;"></span>
+            <span class="cypress" style="--x: 65px; --h: 276px; --r: -1deg;"></span>
+          </div>
+
+          <div class="distant-mountains">
+
+            <div class="mountain m1"></div>
+
+            <div class="mountain m2"></div>
+
+            <div class="mountain m3"></div>
+
+          </div>
+
+          <div class="castle">
+
+            <div class="castle-tower t1"></div>
+
+            <div class="castle-tower t2"></div>
+
+            <div class="castle-tower t3"></div>
+
+            <div class="castle-body"></div>
+
+            <div class="castle-window w1"></div>
+
+            <div class="castle-window w2"></div>
+
+            <div class="castle-window w3"></div>
+
+          </div>
+
+          <div class="hill-back"></div>
+
+          <div class="hill-front"></div>
+
+          <div class="magic-curve">
+
+            <svg
+              viewBox="0 0 800 260"
+              preserveAspectRatio="none"
+            >
+
+              <path
+                class="magic-path"
+                d="
+                  M20,205
+                  C140,135
+                  250,220
+                  370,145
+                  C490,70
+                  620,110
+                  780,35
+                "
+              />
+
+            </svg>
+
+          </div>
+
+          <span
+            class="window-spark"
+            style="
+              left: 12%;
+              top: 53%;
+              font-size: 20px;
+            "
+          >
+            ✦
+          </span>
+
+          <span
+            class="window-spark"
+            style="
+              left: 28%;
+              top: 43%;
+              font-size: 12px;
+              animation-delay: 1.4s;
+            "
+          >
+            ✧
+          </span>
+
+          <span
+            class="window-spark"
+            style="
+              left: 48%;
+              top: 56%;
+              font-size: 26px;
+              animation-delay: .7s;
+            "
+          >
+            ✦
+          </span>
+
+          <span
+            class="window-spark"
+            style="
+              left: 69%;
+              top: 37%;
+              font-size: 15px;
+              animation-delay: 2s;
+            "
+          >
+            ✧
+          </span>
+
+          <span
+            class="window-spark"
+            style="
+              left: 79%;
+              top: 25%;
+              font-size: 24px;
+              animation-delay: 1.1s;
+            "
+          >
+            ✦
+          </span>
+
+        </div>
+
+      </div>
+
+      <a
+        href="#projects"
+        class="scroll-whisper"
+      >
+        <span>Scroll</span>
+        <span class="scroll-line"></span>
+      </a>
+
+    </section>
+
+    <!-- =====================================================
+         SELECTED WORK
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="projects"
+    >
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div>
+
+            <span class="chapter">
+              Chapter I · Selected Work
+            </span>
+
+            <h2 class="section-title">
+              Things I have
+              <br>
+              been building.
+            </h2>
+
+          </div>
+
+          <p class="section-lead">
+            Selected experiments in robot perception,
+            manipulation, synthetic data and embodied intelligence.
+            The images here are kept deliberately real and quiet,
+            while the surrounding page carries the fairytale atmosphere.
+          </p>
+
+        </div>
+
+        <div class="ornament-divider reveal">
+          ✦
+        </div>
+
+        <div class="project-wall">
+
+          <!-- PROJECT 01 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+
+              <img
+                src="assets/projects/MarvinGrasp.png"
+                alt="MarvinGrasp real robot manipulation demo"
+              />
+
+              <div class="project-magic">
+
+                <span
+                  style="
+                    left: 7%;
+                    top: 12%;
+                    font-size: 15px;
+                  "
+                >
+                  ✦
+                </span>
+
+                <span
+                  style="
+                    right: 8%;
+                    top: 21%;
+                    font-size: 10px;
+                    animation-delay: 1.2s;
+                  "
+                >
+                  ✧
+                </span>
+
+                <span
+                  style="
+                    right: 16%;
+                    bottom: 14%;
+                    font-size: 18px;
+                    animation-delay: .5s;
+                  "
+                >
+                  ✦
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="project-info">
+
+              <div class="project-topline">
+
+                <span class="project-number">
+                  PROJECT 01
+                </span>
+
+                <span class="project-year">
+                  2026
+                </span>
+
+              </div>
+
+              <h3>
+                MarvinGrasp
+              </h3>
+
+              <p class="project-description">
+                A real-world robotic manipulation system
+                combining visual perception, object understanding,
+                6D pose reasoning, grasp planning,
+                bimanual control and natural-language interaction.
+              </p>
+
+              <div class="tags">
+                <span>BIMANUAL</span>
+                <span>6D POSE</span>
+                <span>VOICE</span>
+                <span>ROS2</span>
+              </div>
+
+            </div>
+
+          </article>
+
+          <!-- PROJECT 02 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+
+              <img
+                src="assets/projects/flowpose.png"
+                alt="FlowPose 6D pose estimation visualization"
+              />
+
+              <div class="project-magic">
+
+                <span
+                  style="
+                    left: 12%;
+                    bottom: 14%;
+                    font-size: 14px;
+                  "
+                >
+                  ✧
+                </span>
+
+                <span
+                  style="
+                    right: 9%;
+                    top: 11%;
+                    font-size: 18px;
+                    animation-delay: 1.7s;
+                  "
+                >
+                  ✦
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="project-info">
+
+              <div class="project-topline">
+
+                <span class="project-number">
+                  PROJECT 02
+                </span>
+
+                <span class="project-year">
+                  2026
+                </span>
+
+              </div>
+
+              <h3>
+                FlowPose
+              </h3>
+
+              <p class="project-description">
+                6D object pose estimation for robot perception
+                and manipulation, with RGB-D observations,
+                point clouds and object-centric geometric reasoning.
+              </p>
+
+              <div class="tags">
+                <span>6D POSE</span>
+                <span>RGB-D</span>
+                <span>POINT CLOUD</span>
+                <span>PERCEPTION</span>
+              </div>
+
+            </div>
+
+          </article>
+
+          <!-- PROJECT 03 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+
+              <img
+                src="assets/projects/isaac-sim.png"
+                alt="Isaac Sim synthetic data generation scene"
+              />
+
+              <div class="project-magic">
+
+                <span
+                  style="
+                    left: 8%;
+                    top: 20%;
+                    font-size: 19px;
+                  "
+                >
+                  ✦
+                </span>
+
+                <span
+                  style="
+                    right: 11%;
+                    bottom: 17%;
+                    font-size: 11px;
+                    animation-delay: 1s;
+                  "
+                >
+                  ✧
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="project-info">
+
+              <div class="project-topline">
+
+                <span class="project-number">
+                  PROJECT 03
+                </span>
+
+                <span class="project-year">
+                  2026
+                </span>
+
+              </div>
+
+              <h3>
+                Synthetic Data Engine
+              </h3>
+
+              <p class="project-description">
+                Synthetic perception data generation with
+                Isaac Sim and Replicator, including RGB,
+                depth, segmentation, camera parameters,
+                3D annotations and point-cloud data.
+              </p>
+
+              <div class="tags">
+                <span>ISAAC SIM</span>
+                <span>REPLICATOR</span>
+                <span>SYNTHETIC DATA</span>
+                <span>RGB-D</span>
+              </div>
+
+            </div>
+
+          </article>
+
+          <!-- PROJECT 04 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+
+              <img
+                src="assets/projects/paril.png"
+                alt="PARIL Hanoi Tower manipulation experiment"
+              />
+
+              <div class="project-magic">
+
+                <span
+                  style="
+                    left: 10%;
+                    top: 13%;
+                    font-size: 12px;
+                  "
+                >
+                  ✧
+                </span>
+
+                <span
+                  style="
+                    right: 8%;
+                    top: 27%;
+                    font-size: 18px;
+                    animation-delay: 1.3s;
+                  "
+                >
+                  ✦
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="project-info">
+
+              <div class="project-topline">
+
+                <span class="project-number">
+                  PROJECT 04
+                </span>
+
+                <span class="project-year">
+                  2026
+                </span>
+
+              </div>
+
+              <h3>
+                PARIL / Hanoi Tower
+              </h3>
+
+              <p class="project-description">
+                Real-robot imitation learning experiments
+                for precise manipulation and object placement,
+                including the Hanoi Tower disc insertion task.
+              </p>
+
+              <div class="tags">
+                <span>IMITATION LEARNING</span>
+                <span>ACT</span>
+                <span>REAL ROBOT</span>
+                <span>MANIPULATION</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+        <p class="projects-note reveal">
+          These are selected works rather than a complete archive.
+          More experiments, implementation details and technical notes
+          live further down the page.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         RESEARCH
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="research"
+    >
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div>
+
+            <span class="chapter">
+              Chapter II · Research
+            </span>
+
+            <h2 class="section-title">
+              A few constellations
+              <br>
+              I keep following.
+            </h2>
+
+          </div>
+
+          <p class="section-lead">
+            My current interests sit between perception,
+            simulation, manipulation and learning.
+            Each area connects to the others rather than
+            existing as an isolated research topic.
+          </p>
+
+        </div>
+
+        <div class="constellation-grid">
+
+          <!-- CONSTELLATION 01 -->
+
+          <article class="constellation reveal">
+
+            <div class="constellation-sky">
+
+              <span
+                class="constellation-point"
+                style="left: 10%; top: 62%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 39%; top: 28%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 69%; top: 47%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 85%; top: 17%;"
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 11%;
+                  top: 62%;
+                  width: 45%;
+                  transform: rotate(-43deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 40%;
+                  top: 29%;
+                  width: 34%;
+                  transform: rotate(28deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 70%;
+                  top: 48%;
+                  width: 36%;
+                  transform: rotate(-58deg);
+                "
+              ></span>
+
+            </div>
+
+            <span class="constellation-index">
+              I
+            </span>
+
+            <h3>
+              Robot Perception
+            </h3>
+
+            <p>
+              RGB-D perception, point clouds,
+              object understanding and scene-level
+              reasoning for real-world interaction.
+            </p>
+
+          </article>
+
+          <!-- CONSTELLATION 02 -->
+
+          <article class="constellation reveal">
+
+            <div class="constellation-sky">
+
+              <span
+                class="constellation-point"
+                style="left: 14%; top: 19%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 40%; top: 54%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 70%; top: 25%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 88%; top: 67%;"
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 15%;
+                  top: 20%;
+                  width: 43%;
+                  transform: rotate(41deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 41%;
+                  top: 55%;
+                  width: 42%;
+                  transform: rotate(-41deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 71%;
+                  top: 26%;
+                  width: 45%;
+                  transform: rotate(64deg);
+                "
+              ></span>
+
+            </div>
+
+            <span class="constellation-index">
+              II
+            </span>
+
+            <h3>
+              6D Pose
+            </h3>
+
+            <p>
+              Object pose estimation,
+              geometric representation and pose-aware
+              reasoning for robotic manipulation.
+            </p>
+
+          </article>
+
+          <!-- CONSTELLATION 03 -->
+
+          <article class="constellation reveal">
+
+            <div class="constellation-sky">
+
+              <span
+                class="constellation-point"
+                style="left: 8%; top: 52%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 34%; top: 31%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 58%; top: 61%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 86%; top: 29%;"
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 9%;
+                  top: 53%;
+                  width: 34%;
+                  transform: rotate(-31deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 35%;
+                  top: 32%;
+                  width: 39%;
+                  transform: rotate(43deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 59%;
+                  top: 61%;
+                  width: 44%;
+                  transform: rotate(-43deg);
+                "
+              ></span>
+
+            </div>
+
+            <span class="constellation-index">
+              III
+            </span>
+
+            <h3>
+              Synthetic Data
+            </h3>
+
+            <p>
+              Isaac Sim, Replicator,
+              domain randomization and scalable
+              simulation-based perception datasets.
+            </p>
+
+          </article>
+
+          <!-- CONSTELLATION 04 -->
+
+          <article class="constellation reveal">
+
+            <div class="constellation-sky">
+
+              <span
+                class="constellation-point"
+                style="left: 13%; top: 70%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 37%; top: 27%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 61%; top: 48%;"
+              ></span>
+
+              <span
+                class="constellation-point"
+                style="left: 88%; top: 18%;"
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 14%;
+                  top: 70%;
+                  width: 48%;
+                  transform: rotate(-58deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 38%;
+                  top: 28%;
+                  width: 34%;
+                  transform: rotate(31deg);
+                "
+              ></span>
+
+              <span
+                class="constellation-line"
+                style="
+                  left: 62%;
+                  top: 49%;
+                  width: 42%;
+                  transform: rotate(-45deg);
+                "
+              ></span>
+
+            </div>
+
+            <span class="constellation-index">
+              IV
+            </span>
+
+            <h3>
+              Embodied Intelligence
+            </h3>
+
+            <p>
+              Imitation learning,
+              multimodal interaction and intelligent
+              systems grounded in physical action.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         SELECTED NOTES
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="notes"
+    >
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div>
+
+            <span class="chapter">
+              Chapter III · Field Notes
+            </span>
+
+            <h2 class="section-title">
+              Notes from
+              <br>
+              building robots.
+            </h2>
+
+          </div>
+
+          <p class="section-lead">
+            Longer technical notes will live here:
+            implementation details, experiments,
+            lessons learned and explanations that do not
+            fit naturally into a project card.
+          </p>
+
+        </div>
+
+        <div class="notes-list">
+
+          <a
+            class="note-item reveal"
+            href="notes/synthetic-data.html"
+          >
+
+            <span class="note-number">
+              01
+            </span>
+
+            <div class="note-main">
+
+              <h3>
+                Building a Synthetic Data Pipeline
+                in Isaac Sim
+              </h3>
+
+              <p>
+                Isaac Sim · Replicator · RGB-D ·
+                Point Cloud · 6D Annotation
+              </p>
+
+            </div>
+
+            <span class="note-arrow">
+              ↗
+            </span>
+
+          </a>
+
+          <a
+            class="note-item reveal"
+            href="notes/6d-pose.html"
+          >
+
+            <span class="note-number">
+              02
+            </span>
+
+            <div class="note-main">
+
+              <h3>
+                From RGB-D to 6D Object Pose
+              </h3>
+
+              <p>
+                FlowPose · Object Perception ·
+                Geometry · Real Robot
+              </p>
+
+            </div>
+
+            <span class="note-arrow">
+              ↗
+            </span>
+
+          </a>
+
+          <a
+            class="note-item reveal"
+            href="notes/robot-grasping.html"
+          >
+
+            <span class="note-number">
+              03
+            </span>
+
+            <div class="note-main">
+
+              <h3>
+                Building a Real-World
+                Robotic Grasping Pipeline
+              </h3>
+
+              <p>
+                Perception · Pose · IK ·
+                Motion · Gripper Control
+              </p>
+
+            </div>
+
+            <span class="note-arrow">
+              ↗
+            </span>
+
+          </a>
+
+          <div class="note-item reveal">
+
+            <span class="note-number">
+              04
+            </span>
+
+            <div class="note-main">
+
+              <h3>
+                Learning Manipulation
+                from Demonstrations
+              </h3>
+
+              <p>
+                ACT · PARIL · Imitation Learning ·
+                Real Robot
+              </p>
+
+            </div>
+
+            <span class="note-coming">
+              Coming Soon
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         ABOUT
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="about"
+    >
+
+      <div class="container about-grid">
+
+        <div class="about-art reveal">
+
+          <div class="about-orbit"></div>
+
+          <div class="about-world"></div>
+
+          <div class="vine left"></div>
+
+          <div class="vine right"></div>
+
+          <span
+            class="window-spark"
+            style="
+              left: 16%;
+              top: 24%;
+              font-size: 18px;
+            "
+          >
+            ✦
+          </span>
+
+          <span
+            class="window-spark"
+            style="
+              right: 18%;
+              top: 17%;
+              font-size: 11px;
+              animation-delay: 1.3s;
+            "
+          >
+            ✧
+          </span>
+
+          <span
+            class="window-spark"
+            style="
+              left: 23%;
+              bottom: 18%;
+              font-size: 13px;
+              animation-delay: .8s;
+            "
+          >
+            ✦
+          </span>
+
+          <span
+            class="window-spark"
+            style="
+              right: 20%;
+              bottom: 25%;
+              font-size: 21px;
+              animation-delay: 1.8s;
+            "
+          >
+            ✧
+          </span>
+
+        </div>
+
+        <div class="about-copy reveal">
+
+          <span class="chapter">
+            Chapter IV · About
+          </span>
+
+          <h2>
+            Between algorithms
+            <br>
+            and the physical world.
+          </h2>
+
+          <p>
+            I study Artificial Intelligence and minor in Journalism.
+            My interests move between robotics, embodied intelligence,
+            intelligent agents, computer vision, image generation
+            and visual culture.
+            <br><br>
+            I enjoy building systems that connect perception,
+            reasoning and physical interaction.
+            Outside engineering, I am also interested in photography
+            and visual storytelling.
+          </p>
+
+          <div class="about-facts">
+
+            <div class="about-fact">
+
+              <strong>
+                Artificial Intelligence
+              </strong>
+
+              <span>
+                Major
+              </span>
+
+            </div>
+
+            <div class="about-fact">
+
+              <strong>
+                Journalism
+              </strong>
+
+              <span>
+                Minor
+              </span>
+
+            </div>
+
+            <div class="about-fact">
+
+              <strong>
+                Robotics
+              </strong>
+
+              <span>
+                Perception · Manipulation · Learning
+              </span>
+
+            </div>
+
+            <div class="about-fact">
+
+              <strong>
+                Visual Work
+              </strong>
+
+              <span>
+                Photography · Image Generation · Design
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         CONTACT
+         ===================================================== -->
+
+    <section class="contact">
+
+      <div class="container reveal">
+
+        <span class="contact-star">
+          ✦
+        </span>
+
+        <h2>
+          Somewhere between
+          <br>
+          robots and stardust.
+        </h2>
+
+        <p>
+          I am interested in robotics,
+          embodied intelligence, synthetic data,
+          robot perception and creative technology.
+        </p>
+
+        <div class="contact-actions">
+
+          <a
+            class="button primary"
+            href="https://github.com/Rosemachinegun"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+            <span>↗</span>
+          </a>
+
+          <!--
+               替换成你的邮箱
+          -->
+
+          <a
+            class="button"
+            href="mailto:YOUR_EMAIL@example.com"
+          >
+            Email
+          </a>
+
+          <!--
+               如果仓库根目录有 cv.pdf，
+               这个按钮就可以直接使用
+          -->
+
+          <a
+            class="button"
+            href="cv.pdf"
+            target="_blank"
+          >
+            CV
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <footer>
+
+    <div class="container footer-row">
+
+      <span>
+        ✦ Qin Yuyang
+      </span>
+
+      <span>
+        AI · Robotics · Embodied Intelligence
+      </span>
+
+      <span>
+        ©
+        <span id="year"></span>
+      </span>
+
+    </div>
+
+  </footer>
+
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
+
+  <script>
+
+    /* =========================================================
+       YEAR
+       ========================================================= */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* =========================================================
+       STARS
+       ========================================================= */
+
+    const starField =
+      document.getElementById("starField");
+
+    function createStars(count = 150) {
+
+      for (let i = 0; i < count; i++) {
+
+        const star =
+          document.createElement("div");
+
+        star.classList.add("star");
+
+        if (Math.random() > 0.84) {
+          star.classList.add("big");
+        }
+
+        if (Math.random() > 0.81) {
+          star.classList.add("cross");
+        }
+
+        star.style.left =
+          Math.random() * 100 + "%";
+
+        star.style.top =
+          Math.random() * 84 + "%";
+
+        star.style.animationDuration =
+          3 + Math.random() * 6 + "s";
+
+        star.style.animationDelay =
+          Math.random() * 7 + "s";
+
+        starField.appendChild(star);
+      }
+    }
+
+    createStars();
+
+
+    /* =========================================================
+       SHOOTING STARS
+       ========================================================= */
+
+    const shootingField =
+      document.getElementById(
+        "shootingField"
+      );
+
+    function addShootingStar(
+      left,
+      top,
+      delay,
+      duration = 8
+    ) {
+
+      const star =
+        document.createElement("div");
+
+      star.className =
+        "shooting-star";
+
+      star.style.left =
+        left + "%";
+
+      star.style.top =
+        top + "%";
+
+      star.style.animationDelay =
+        delay + "s";
+
+      star.style.animationDuration =
+        duration + "s";
+
+      shootingField.appendChild(star);
+    }
+
+    addShootingStar(
+      94,
+      13,
+      1,
+      10
+    );
+
+    addShootingStar(
+      83,
+      29,
+      5,
+      13
+    );
+
+    addShootingStar(
+      72,
+      8,
+      9,
+      15
+    );
+
+
+
+    /* =========================================================
+       EXTRA FAIRY PASS · MORE METEORS / FAIRY DUST / MINI FAIRIES
+       ========================================================= */
+
+    [
+      [88, 20, 12, 9, "soft"],
+      [79, 16, 16, 11, "long"],
+      [92, 34, 20, 10, "soft"],
+      [69, 11, 24, 13, "long"],
+      [85, 40, 29, 12, "soft"]
+    ].forEach(([left, top, delay, duration, kind]) => {
+      const meteor = document.createElement("div");
+      meteor.className = `shooting-star ${kind}`;
+      meteor.style.left = left + "%";
+      meteor.style.top = top + "%";
+      meteor.style.animationDelay = delay + "s";
+      meteor.style.animationDuration = duration + "s";
+      shootingField.appendChild(meteor);
+    });
+
+    function spawnWanderingMeteor() {
+      if (
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches
+      ) {
+        return;
+      }
+
+      const meteor = document.createElement("div");
+      meteor.className =
+        "shooting-star " +
+        (Math.random() > 0.5
+          ? "soft"
+          : "long");
+
+      meteor.style.left =
+        62 + Math.random() * 34 + "%";
+      meteor.style.top =
+        4 + Math.random() * 36 + "%";
+      meteor.style.animationDelay = "0s";
+      meteor.style.animationDuration =
+        8 + Math.random() * 7 + "s";
+      meteor.style.width =
+        105 + Math.random() * 70 + "px";
+
+      shootingField.appendChild(meteor);
+
+      setTimeout(
+        () => meteor.remove(),
+        16000
+      );
+    }
+
+    setTimeout(
+      spawnWanderingMeteor,
+      1800
+    );
+
+    setInterval(
+      spawnWanderingMeteor,
+      5400
+    );
+
+    function createPixie(extraClass) {
+      const pixie = document.createElement("div");
+      pixie.className = `pixie ${extraClass}`;
+      pixie.setAttribute("aria-hidden", "true");
+      pixie.innerHTML = `
+        <svg viewBox="0 0 120 120" role="presentation" focusable="false">
+          <ellipse class="wing wing-left" cx="40" cy="43" rx="14" ry="27" transform="rotate(-31 40 43)"></ellipse>
+          <ellipse class="wing wing-right" cx="70" cy="42" rx="12" ry="25" transform="rotate(18 70 42)"></ellipse>
+          <circle class="pixie-bun" cx="71" cy="16" r="7"></circle>
+          <path class="pixie-hair" d="M56 24 C58 14 70 12 77 18 C80 22 80 31 73 35 C65 38 57 34 56 24 Z"></path>
+          <circle class="pixie-head" cx="65" cy="28" r="8.5"></circle>
+          <path class="pixie-arm" d="M57 47 C46 52 41 59 38 67"></path>
+          <path class="pixie-arm" d="M74 46 C85 52 91 55 99 54"></path>
+          <path class="pixie-torso" d="M57 37 C63 34 70 35 74 41 C77 45 76 54 70 57 C64 60 57 58 54 52 C52 46 53 40 57 37 Z"></path>
+          <path class="pixie-dress" d="M54 52 C63 57 71 57 79 54 C79 66 72 76 63 82 C53 76 49 66 54 52 Z"></path>
+          <path class="pixie-leg" d="M63 80 C58 90 55 100 51 108"></path>
+          <path class="pixie-leg" d="M71 80 C79 89 84 99 90 108"></path>
+          <circle class="pixie-slipper" cx="50" cy="109" r="4"></circle>
+          <circle class="pixie-slipper" cx="92" cy="109" r="4"></circle>
+          <path class="pixie-wand" d="M98 54 L111 49"></path>
+          <circle class="wand-star" cx="113" cy="48" r="3"></circle>
+          <circle class="spark-dot" cx="105" cy="42" r="2"></circle>
+          <circle class="spark-dot" cx="102" cy="57" r="1.6"></circle>
+        </svg>
+      `;
+      return pixie;
+    }
+
+    const pixieField =
+      document.getElementById(
+        "pixieField"
+      );
+
+    if (pixieField) {
+      ["one", "two", "three"].forEach(
+        name => pixieField.appendChild(createPixie(name))
+      );
+    }
+
+    const magicField =
+      document.getElementById(
+        "magicField"
+      );
+
+    function addAmbientMote({ x, y, size, dx, dy, duration } = {}) {
+      if (
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches || !magicField
+      ) {
+        return;
+      }
+
+      const mote = document.createElement("span");
+      mote.className = "ambient-mote";
+
+      const finalSize =
+        size ?? (2 + Math.random() * 5.5);
+      mote.style.width =
+        finalSize + "px";
+      mote.style.height =
+        finalSize + "px";
+      mote.style.left =
+        (x ?? 8 + Math.random() * 84) + "%";
+      mote.style.top =
+        (y ?? 10 + Math.random() * 72) + "%";
+      mote.style.setProperty(
+        "--mx",
+        (dx ?? (Math.random() * 90 - 45)) + "px"
+      );
+      mote.style.setProperty(
+        "--my",
+        (dy ?? (-28 - Math.random() * 76)) + "px"
+      );
+      mote.style.setProperty(
+        "--dur",
+        (duration ?? (8 + Math.random() * 8)) + "s"
+      );
+
+      magicField.appendChild(mote);
+
+      setTimeout(
+        () => mote.remove(),
+        18000
+      );
+    }
+
+    function dustAroundElement(selector, count = 4) {
+      const anchor =
+        document.querySelector(selector);
+
+      if (!anchor || !magicField) {
+        return;
+      }
+
+      const rect = anchor.getBoundingClientRect();
+      const x =
+        ((rect.left + rect.width / 2) /
+          window.innerWidth) * 100;
+      const y =
+        ((rect.top + rect.height / 2) /
+          window.innerHeight) * 100;
+
+      for (let i = 0; i < count; i++) {
+        addAmbientMote({
+          x: x + (Math.random() * 8 - 4),
+          y: y + (Math.random() * 8 - 4),
+          size: 2 + Math.random() * 4,
+          dx: Math.random() * 60 - 30,
+          dy: -18 - Math.random() * 46,
+          duration: 5 + Math.random() * 5
+        });
+      }
+    }
+
+    for (let i = 0; i < 14; i++) {
+      setTimeout(
+        () => addAmbientMote(),
+        i * 220
+      );
+    }
+
+    setInterval(
+      () => {
+        const burst =
+          1 + Math.floor(Math.random() * 3);
+        for (let i = 0; i < burst; i++) {
+          addAmbientMote();
+        }
+      },
+      1400
+    );
+
+    setInterval(
+      () => {
+        dustAroundElement(
+          ".pixie.one",
+          5
+        );
+        dustAroundElement(
+          ".pixie.two",
+          3
+        );
+        dustAroundElement(
+          ".pixie.three",
+          2
+        );
+      },
+      1850
+    );
+
+
+    /* =========================================================
+       CURSOR FAIRY DUST
+       ========================================================= */
+
+    let lastDustTime = 0;
+
+    document.addEventListener(
+      "pointermove",
+      (event) => {
+
+        if (
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches
+        ) {
+          return;
+        }
+
+        const now =
+          performance.now();
+
+        if (
+          now - lastDustTime < 65
+        ) {
+          return;
+        }
+
+        lastDustTime = now;
+
+        const amount =
+          Math.random() > 0.82
+            ? 2
+            : 1;
+
+        for (
+          let i = 0;
+          i < amount;
+          i++
+        ) {
+
+          const particle =
+            document.createElement(
+              "span"
+            );
+
+          particle.className =
+            "cursor-particle";
+
+          particle.style.left =
+            event.clientX +
+            Math.random() * 12 -
+            6 +
+            "px";
+
+          particle.style.top =
+            event.clientY +
+            Math.random() * 12 -
+            6 +
+            "px";
+
+          particle.style.setProperty(
+            "--dx",
+            Math.random() * 46 -
+              23 +
+              "px"
+          );
+
+          particle.style.setProperty(
+            "--dy",
+            Math.random() * -48 -
+              8 +
+              "px"
+          );
+
+          document.body.appendChild(
+            particle
+          );
+
+          setTimeout(
+            () =>
+              particle.remove(),
+            1250
+          );
+        }
+      }
+    );
+
+
+    /* =========================================================
+       OCCASIONAL MAGIC DUST
+       ========================================================= */
+
+    function ambientDust() {
+
+      if (
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches
+      ) {
+        return;
+      }
+
+      const particle =
+        document.createElement(
+          "span"
+        );
+
+      particle.className =
+        "cursor-particle";
+
+      particle.style.left =
+        15 +
+        Math.random() * 70 +
+        "vw";
+
+      particle.style.top =
+        12 +
+        Math.random() * 58 +
+        "vh";
+
+      particle.style.opacity =
+        0.7;
+
+      particle.style.setProperty(
+        "--dx",
+        Math.random() * 30 -
+          15 +
+          "px"
+      );
+
+      particle.style.setProperty(
+        "--dy",
+        Math.random() * -55 -
+          12 +
+          "px"
+      );
+
+      document.body.appendChild(
+        particle
+      );
+
+      setTimeout(
+        () => particle.remove(),
+        1250
+      );
+    }
+
+    setInterval(
+      ambientDust,
+      1650
+    );
+
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+
+    const revealElements =
+      document.querySelectorAll(
+        ".reveal"
+      );
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target
+                  .classList
+                  .add("visible");
+
+                observer.unobserve(
+                  entry.target
+                );
+              }
+            }
+          );
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+    revealElements.forEach(
+      element =>
+        observer.observe(
+          element
+        )
+    );
+
+
+    /* =========================================================
+       NAV ON SCROLL
+       ========================================================= */
+
+    const navShell =
+      document.getElementById(
+        "navShell"
+      );
+
+    function updateNav() {
+
+      if (
+        window.scrollY > 40
+      ) {
+
+        navShell.classList.add(
+          "scrolled"
+        );
+
+      } else {
+
+        navShell.classList.remove(
+          "scrolled"
+        );
+      }
+    }
+
+    window.addEventListener(
+      "scroll",
+      updateNav,
+      {
+        passive: true
+      }
+    );
+
+    updateNav();
+
+
+    /* =========================================================
+       MOBILE MENU
+       ========================================================= */
+
+    const menuButton =
+      document.getElementById(
+        "menuButton"
+      );
+
+    const navLinks =
+      document.querySelectorAll(
+        "#navLinks a"
+      );
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        document.body
+          .classList
+          .toggle("menu-open");
+
+        menuButton.textContent =
+          document.body
+            .classList
+            .contains(
+              "menu-open"
+            )
+          ? "×"
+          : "☰";
+      }
+    );
+
+    navLinks.forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            document.body
+              .classList
+              .remove(
+                "menu-open"
+              );
+
+            menuButton.textContent =
+              "☰";
+          }
+        );
+      }
+    );
+
+  </script>
+
+</body>
+</html>
